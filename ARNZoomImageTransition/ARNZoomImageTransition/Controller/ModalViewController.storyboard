@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--Modal View Controller-->
+        <scene sceneID="voD-2n-ZS7">
+            <objects>
+                <viewController storyboardIdentifier="ModalViewController" id="zSB-aw-sBJ" customClass="ModalViewController" customModule="ARNZoomImageTransition" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IAF-hg-Hcl"/>
+                        <viewControllerLayoutGuide type="bottom" id="GfA-9t-bT0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="U0U-wj-u1A">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AUG-FD-lXK">
+                                <rect key="frame" x="16" y="372" width="343" height="237"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ta-g8-pbt">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="1so-Pc-6Ul"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Close">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapCloseButton:" destination="zSB-aw-sBJ" eventType="touchUpInside" id="VfP-4p-3hw"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mos.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="XHY-DZ-v0p">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="364"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="364" id="lZD-Vg-4CS"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="XHY-DZ-v0p" secondAttribute="trailing" id="8V6-Dv-05u"/>
+                            <constraint firstAttribute="trailing" secondItem="AUG-FD-lXK" secondAttribute="trailing" constant="16" id="FQZ-6s-5Pd"/>
+                            <constraint firstAttribute="trailing" secondItem="0Ta-g8-pbt" secondAttribute="trailing" id="QGR-6R-XvR"/>
+                            <constraint firstItem="0Ta-g8-pbt" firstAttribute="top" secondItem="AUG-FD-lXK" secondAttribute="bottom" constant="8" id="RyZ-IW-K5b"/>
+                            <constraint firstItem="0Ta-g8-pbt" firstAttribute="leading" secondItem="U0U-wj-u1A" secondAttribute="leading" id="Sia-Ly-BzN"/>
+                            <constraint firstItem="AUG-FD-lXK" firstAttribute="leading" secondItem="U0U-wj-u1A" secondAttribute="leading" constant="16" id="Uf7-ht-kNh"/>
+                            <constraint firstItem="AUG-FD-lXK" firstAttribute="top" secondItem="XHY-DZ-v0p" secondAttribute="bottom" constant="8" id="clC-WQ-kHT"/>
+                            <constraint firstItem="XHY-DZ-v0p" firstAttribute="top" secondItem="U0U-wj-u1A" secondAttribute="top" id="ftT-4q-Z5Q"/>
+                            <constraint firstItem="XHY-DZ-v0p" firstAttribute="leading" secondItem="U0U-wj-u1A" secondAttribute="leading" id="tcS-SI-t19"/>
+                            <constraint firstItem="GfA-9t-bT0" firstAttribute="top" secondItem="0Ta-g8-pbt" secondAttribute="bottom" id="wuv-uM-Uow"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="imageView" destination="XHY-DZ-v0p" id="pop-sa-Tyn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cqp-zy-5ZR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="378.5" y="348.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="mos.jpg" width="568" height="568"/>
+    </resources>
+</document>

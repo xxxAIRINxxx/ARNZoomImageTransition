@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3wx-TT-OlU">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--Image Transition Navigation Controller-->
+        <scene sceneID="V20-gV-Sgm">
+            <objects>
+                <navigationController id="3wx-TT-OlU" customClass="ARNImageTransitionNavigationController" customModule="ARNZoomImageTransition" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="E7y-Au-Gag">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="upw-ve-0xM">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="PXk-LI-ARd" kind="relationship" relationship="rootViewController" id="Ya5-Rh-QGW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YSo-Yf-LQ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1489.5" y="183.5"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="muz-in-5xC">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="PXk-LI-ARd" customClass="MainViewController" customModule="ARNZoomImageTransition" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cDE-FJ-7Zx"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ofh-b3-XY8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3k4-QJ-2bI">
+                        <rect key="frame" x="0.0" y="64" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5LQ-Az-0Sa">
+                                <rect key="frame" x="0.0" y="64" width="375" height="300"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="iMx-g4-iYy"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9v5-QK-ihj">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="PXk-LI-ARd" id="Kib-Bf-P3o"/>
+                                    <outlet property="delegate" destination="PXk-LI-ARd" id="msr-AL-g45"/>
+                                </connections>
+                            </collectionView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="AsL-iD-kOd">
+                                <rect key="frame" x="0.0" y="364" width="375" height="303"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="PXk-LI-ARd" id="x6o-wo-Ek6"/>
+                                    <outlet property="delegate" destination="PXk-LI-ARd" id="FZe-km-oeE"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5LQ-Az-0Sa" firstAttribute="leading" secondItem="3k4-QJ-2bI" secondAttribute="leading" id="6gk-Iy-KuK"/>
+                            <constraint firstItem="AsL-iD-kOd" firstAttribute="top" secondItem="5LQ-Az-0Sa" secondAttribute="bottom" id="DvY-SG-3UK"/>
+                            <constraint firstAttribute="trailing" secondItem="AsL-iD-kOd" secondAttribute="trailing" id="ZeU-i2-ulw"/>
+                            <constraint firstItem="5LQ-Az-0Sa" firstAttribute="top" secondItem="cDE-FJ-7Zx" secondAttribute="bottom" id="cU8-0u-hnV"/>
+                            <constraint firstItem="Ofh-b3-XY8" firstAttribute="top" secondItem="AsL-iD-kOd" secondAttribute="bottom" id="ezO-rb-0cz"/>
+                            <constraint firstItem="AsL-iD-kOd" firstAttribute="leading" secondItem="3k4-QJ-2bI" secondAttribute="leading" id="hwA-gY-ohw"/>
+                            <constraint firstAttribute="trailing" secondItem="5LQ-Az-0Sa" secondAttribute="trailing" id="li7-4e-YNv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Main" id="MYB-9d-ZFp"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="collectionView" destination="5LQ-Az-0Sa" id="vaJ-KY-c76"/>
+                        <outlet property="tableView" destination="AsL-iD-kOd" id="Jhy-wE-npj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ElT-TY-8vJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-971.5" y="183.5"/>
+        </scene>
+    </scenes>
+</document>
