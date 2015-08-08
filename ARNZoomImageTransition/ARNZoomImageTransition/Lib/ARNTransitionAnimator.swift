@@ -153,13 +153,6 @@ UIGestureRecognizerDelegate {
         let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let containerView = transitionContext.containerView()
         
-        containerView.addSubview(fromVC.view)
-        containerView.addSubview(toVC.view)
-        
-        if self.isDismiss == true {
-            containerView.bringSubviewToFront(fromVC.view)
-        }
-        
         self.fireBeforeHandler(containerView)
         
         self.animateWithDuration(

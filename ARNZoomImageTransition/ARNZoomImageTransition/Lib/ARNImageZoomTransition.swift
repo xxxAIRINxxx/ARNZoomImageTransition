@@ -45,6 +45,13 @@ class ARNImageZoomTransition {
             animator.isDismiss = isDismiss
             
             animator.presentationBeforeHandler = { (containerView: UIView) in
+                containerView.addSubview(fromVC.view)
+                containerView.addSubview(toVC.view)
+                
+                if isDismiss == true {
+                    containerView.bringSubviewToFront(fromVC.view)
+                }
+                
                 let sourceImageView = sourceTransition.createTransitionImageView()
                 let destinationImageView = destinationTransition.createTransitionImageView()
                 
@@ -76,6 +83,13 @@ class ARNImageZoomTransition {
             }
             
             animator.dismissalBeforeAnimationHandler = { (containerView: UIView) in
+                containerView.addSubview(fromVC.view)
+                containerView.addSubview(toVC.view)
+                
+                if isDismiss == true {
+                    containerView.bringSubviewToFront(fromVC.view)
+                }
+                
                 let sourceImageView = sourceTransition.createTransitionImageView()
                 let destinationImageView = destinationTransition.createTransitionImageView()
                 containerView.addSubview(sourceImageView)
@@ -102,5 +116,4 @@ class ARNImageZoomTransition {
         
         return animator
     }
-
 }
