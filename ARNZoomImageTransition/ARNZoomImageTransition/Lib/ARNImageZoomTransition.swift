@@ -48,6 +48,9 @@ class ARNImageZoomTransition {
                 containerView.addSubview(fromVC.view)
                 containerView.addSubview(toVC.view)
                 
+                // Update Auto Layout
+                toVC.view.layoutIfNeeded()
+                
                 if isDismiss == true {
                     containerView.bringSubviewToFront(fromVC.view)
                 }
@@ -61,13 +64,8 @@ class ARNImageZoomTransition {
                 destinationTransition.presentationBeforeAction?()
                 
                 animator.presentationAnimationHandler = { (containerView: UIView, percentComplete: CGFloat) in
-                    // FIXME : Adaptive Layout
-                    sourceImageView.frame = CGRectMake(
-                        destinationImageView.frame.origin.x,
-                        destinationImageView.frame.origin.y,
-                        toVC.view.frame.size.width,
-                        destinationImageView.frame.size.height
-                    )
+                    sourceImageView.frame = destinationImageView.frame
+                    
                     toVC.view.alpha = 1.0
                     
                     sourceTransition.presentationAnimationAction?()

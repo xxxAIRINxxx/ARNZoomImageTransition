@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
@@ -18,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AUG-FD-lXK">
-                                <rect key="frame" x="16" y="372" width="343" height="237"/>
+                                <rect key="frame" x="16" y="392" width="343" height="217"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -40,7 +39,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mos.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="XHY-DZ-v0p">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="364"/>
+                                <rect key="frame" x="20" y="20" width="335" height="364"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="364" id="lZD-Vg-4CS"/>
                                 </constraints>
@@ -48,15 +47,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="XHY-DZ-v0p" secondAttribute="trailing" id="8V6-Dv-05u"/>
+                            <constraint firstAttribute="trailing" secondItem="XHY-DZ-v0p" secondAttribute="trailing" constant="20" id="8V6-Dv-05u"/>
                             <constraint firstAttribute="trailing" secondItem="AUG-FD-lXK" secondAttribute="trailing" constant="16" id="FQZ-6s-5Pd"/>
                             <constraint firstAttribute="trailing" secondItem="0Ta-g8-pbt" secondAttribute="trailing" id="QGR-6R-XvR"/>
                             <constraint firstItem="0Ta-g8-pbt" firstAttribute="top" secondItem="AUG-FD-lXK" secondAttribute="bottom" constant="8" id="RyZ-IW-K5b"/>
                             <constraint firstItem="0Ta-g8-pbt" firstAttribute="leading" secondItem="U0U-wj-u1A" secondAttribute="leading" id="Sia-Ly-BzN"/>
                             <constraint firstItem="AUG-FD-lXK" firstAttribute="leading" secondItem="U0U-wj-u1A" secondAttribute="leading" constant="16" id="Uf7-ht-kNh"/>
                             <constraint firstItem="AUG-FD-lXK" firstAttribute="top" secondItem="XHY-DZ-v0p" secondAttribute="bottom" constant="8" id="clC-WQ-kHT"/>
-                            <constraint firstItem="XHY-DZ-v0p" firstAttribute="top" secondItem="U0U-wj-u1A" secondAttribute="top" id="ftT-4q-Z5Q"/>
-                            <constraint firstItem="XHY-DZ-v0p" firstAttribute="leading" secondItem="U0U-wj-u1A" secondAttribute="leading" id="tcS-SI-t19"/>
+                            <constraint firstItem="XHY-DZ-v0p" firstAttribute="top" secondItem="U0U-wj-u1A" secondAttribute="top" constant="20" id="ftT-4q-Z5Q"/>
+                            <constraint firstItem="XHY-DZ-v0p" firstAttribute="leading" secondItem="U0U-wj-u1A" secondAttribute="leading" constant="20" id="tcS-SI-t19"/>
                             <constraint firstItem="GfA-9t-bT0" firstAttribute="top" secondItem="0Ta-g8-pbt" secondAttribute="bottom" id="wuv-uM-Uow"/>
                         </constraints>
                     </view>
