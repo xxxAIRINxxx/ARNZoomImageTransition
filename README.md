@@ -14,8 +14,6 @@ Custom image zooming animation transition. (Swift lang)
 
 ## Known Issues
 
-* fix into Adaptive Layout (It uses the previous frame the auto layout is applied)
-
 * iOS 7 not working
 
 ## License
