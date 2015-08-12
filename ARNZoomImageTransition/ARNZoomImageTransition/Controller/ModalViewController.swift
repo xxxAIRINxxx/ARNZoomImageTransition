@@ -16,6 +16,10 @@ class ModalViewController: ARNModalImageTransitionViewController, ARNImageTransi
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    deinit {
+        println("deinit ModalViewController")
+    }
+    
     // MARK: - ARNImageTransitionZoomable
     
     func createTransitionImageView() -> UIImageView {

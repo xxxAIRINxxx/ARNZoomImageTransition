@@ -14,6 +14,10 @@ class DetailViewController: UIViewController, ARNImageTransitionZoomable {
     
     // MARK: - ARNImageTransitionZoomable
     
+    deinit {
+        println("deinit DetailViewController")
+    }
+    
     func createTransitionImageView() -> UIImageView {
         var imageView = UIImageView(image: self.imageView.image)
         imageView.contentMode = self.imageView.contentMode

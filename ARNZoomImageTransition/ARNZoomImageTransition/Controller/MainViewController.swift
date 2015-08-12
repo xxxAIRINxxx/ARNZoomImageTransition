@@ -15,7 +15,10 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
     
     weak var selectedImageView : UIImageView?
     
+    var animator : ARNTransitionAnimator?
+    
     var isModeModal : Bool = false
+    var isModeInteractive : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +38,12 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
         } else {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Modal", style: .Done, target: self, action: "modeModal")
         }
+        
+        if isModeInteractive {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Interactive", style: .Done, target: self, action: "modeNormal")
+        } else {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Normal", style: .Done, target: self, action: "modeInteractive")
+        }
     }
     
     func modePush() {
@@ -46,6 +55,17 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
         self.isModeModal = true
         self.updateNavigationItem()
     }
+
+    func modeInteractive() {
+        self.isModeInteractive = true
+        self.updateNavigationItem()
+    }
+    
+    func modeNormal() {
+        self.isModeInteractive = false
+        self.updateNavigationItem()
+    }
+
     
     // MARK: - ARNImageTransitionZoomable
     
@@ -57,6 +77,39 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
         imageView.frame = self.selectedImageView!.convertRect(self.selectedImageView!.frame, toView: self.view)
         
         return imageView
+    }
+    
+    func handleTransition() {
+        if isModeInteractive {
+            self.showInteractive()
+        } else {
+            if isModeModal {
+                let storyboard = UIStoryboard(name: "ModalViewController", bundle: nil)
+                let controller = storyboard.instantiateViewControllerWithIdentifier("ModalViewController") as! ModalViewController
+                controller.transitioningDelegate = controller
+                self.presentViewController(controller, animated: true, completion: nil)
+            } else {
+                let storyboard = UIStoryboard(name: "DetailViewController", bundle: nil)
+                let controller = storyboard.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        }
+    }
+    
+    func showInteractive() {
+        if isModeModal {
+            let storyboard = UIStoryboard(name: "ModalViewController", bundle: nil)
+            let controller = storyboard.instantiateViewControllerWithIdentifier("ModalViewController") as! ModalViewController
+            self.animator = ARNImageZoomTransition.createAnimator(.Present, fromVC: self, toVC: controller)
+            self.animator!.handlePanType = .Dismiss
+            self.presentViewController(controller, animated: true, completion: nil)
+        } else {
+            let storyboard = UIStoryboard(name: "DetailViewController", bundle: nil)
+            let controller = storyboard.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
+            self.animator = ARNImageZoomTransition.createAnimator(.Push, fromVC: self, toVC: controller)
+            self.animator!.handlePanType = .Pop
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     // MARK: - UICollectionViewDataSource
@@ -76,16 +129,7 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCell
         self.selectedImageView = cell.cellImageView
         
-        if isModeModal {
-            let storyboard = UIStoryboard(name: "ModalViewController", bundle: nil)
-            let controller = storyboard.instantiateViewControllerWithIdentifier("ModalViewController") as! ModalViewController
-            controller.transitioningDelegate = controller
-            self.presentViewController(controller, animated: true, completion: nil)
-        } else {
-            let storyboard = UIStoryboard(name: "DetailViewController", bundle: nil)
-            let controller = storyboard.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
+        self.handleTransition()
     }
     
     // MARK: - UITableViewDataSource
@@ -111,15 +155,6 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! TableCell
         self.selectedImageView = cell.cellImageView
         
-        if isModeModal {
-            let storyboard = UIStoryboard(name: "ModalViewController", bundle: nil)
-            let controller = storyboard.instantiateViewControllerWithIdentifier("ModalViewController") as! ModalViewController
-            controller.transitioningDelegate = controller
-            self.presentViewController(controller, animated: true, completion: nil)
-        } else {
-            let storyboard = UIStoryboard(name: "DetailViewController", bundle: nil)
-            let controller = storyboard.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
+        self.handleTransition()
     }
 }

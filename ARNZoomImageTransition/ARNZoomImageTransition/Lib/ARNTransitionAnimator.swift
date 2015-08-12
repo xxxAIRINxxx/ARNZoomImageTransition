@@ -23,10 +23,7 @@ public enum ARNTransitionAnimatorOperation: Int {
     case Dismiss
 }
 
-public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition,
-    UIViewControllerAnimatedTransitioning,
-    UIViewControllerTransitioningDelegate,
-UIGestureRecognizerDelegate {
+public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition {
     
     public var direction : ARNTransitionAnimatorDirection = .Bottom
     public var panCompletionThreshold : CGFloat = 100.0
@@ -43,22 +40,9 @@ UIGestureRecognizerDelegate {
     public var transitionDuration : NSTimeInterval = 0.5
     public var initialSpringVelocity : CGFloat = 0.1
     
-    public var needPresentationInteractive : Bool = false {
+    public var handlePanType : ARNTransitionAnimatorOperation = .Push {
         didSet {
-            if self.needPresentationInteractive == true {
-                self.registerPanGesture()
-            } else {
-                self.unregisterPanGesture()
-            }
-        }
-    }
-    public var needDismissalInteractive : Bool = false {
-        didSet {
-            if self.needDismissalInteractive == true {
-                self.registerPanGesture()
-            } else {
-                self.unregisterPanGesture()
-            }
+            self.registerPanGesture()
         }
     }
     
@@ -87,14 +71,15 @@ UIGestureRecognizerDelegate {
     // MARK: Public Methods
     
     public func registerPanGesture() {
-        if self.gesture == nil {
-            self.gesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
-            self.gesture!.delegate = self
-            if self.needPresentationInteractive == true {
-                self.fromVC.view.addGestureRecognizer(self.gesture!)
-            } else if self.needDismissalInteractive == true {
-                self.fromVC.view.addGestureRecognizer(self.gesture!)
-            }
+        self.unregisterPanGesture()
+        
+        self.gesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        self.gesture!.delegate = self
+        switch (self.handlePanType) {
+        case .Push, .Present:
+            self.fromVC.view.addGestureRecognizer(self.gesture!)
+        case .Pop, .Dismiss:
+            self.toVC.view.addGestureRecognizer(self.gesture!)
         }
     }
     
@@ -156,15 +141,89 @@ UIGestureRecognizerDelegate {
         })
     }
     
-    // MARK: UIViewControllerAnimatedTransitioning
+    // MARK: Gesture
     
-    public func animationEnded(transitionCompleted: Bool) {
-        self.needPresentationInteractive = false
-        self.needDismissalInteractive = false
-        self.transitionContext = nil
+    func handlePan(recognizer: UIPanGestureRecognizer) {
+        var window : UIWindow? = nil
+        
+        switch (self.handlePanType) {
+        case .Push, .Present:
+            window = self.fromVC.view.window
+        case .Pop, .Dismiss:
+            window = self.toVC.view.window
+        }
+        
+        var location = recognizer.locationInView(window)
+        location = CGPointApplyAffineTransform(location, CGAffineTransformInvert(recognizer.view!.transform))
+        var velocity = recognizer .velocityInView(window)
+        velocity = CGPointApplyAffineTransform(velocity, CGAffineTransformInvert(recognizer.view!.transform))
+        
+        if recognizer.state == .Began {
+            self.isInteractive = true
+            switch (self.direction) {
+            case .Top, .Bottom:
+                self.panLocationStart = location.y
+            case .Left, .Right:
+                self.panLocationStart = location.x
+            }
+            
+            switch (self.handlePanType) {
+            case .Push:
+                self.fromVC.navigationController?.pushViewController(self.toVC, animated: true)
+            case .Present:
+                self.fromVC.presentViewController(self.toVC, animated: true, completion: nil)
+            case .Pop:
+                self.toVC.navigationController?.popViewControllerAnimated(true)
+            case .Dismiss:
+                self.toVC.dismissViewControllerAnimated(true, completion: nil)
+            }
+        } else if recognizer.state == .Changed {
+            var animationRatio: CGFloat = 0.0
+            
+            var bounds = CGRectZero
+            switch (self.handlePanType) {
+            case .Push, .Present:
+                bounds = self.fromVC.view.bounds
+            case .Pop, .Dismiss:
+                bounds = self.toVC.view.bounds
+            }
+            
+            switch self.direction {
+            case .Top:
+                animationRatio = (self.panLocationStart - location.y) / CGRectGetHeight(bounds)
+            case .Bottom:
+                animationRatio = (location.y - self.panLocationStart) / CGRectGetHeight(bounds)
+            case .Left:
+                animationRatio = (self.panLocationStart - location.x) / CGRectGetWidth(bounds)
+            case .Right:
+                animationRatio = (location.x - self.panLocationStart) / CGRectGetWidth(bounds)
+            }
+            self.updateInteractiveTransition(animationRatio)
+        } else if recognizer.state == .Ended {
+            var velocityForSelectedDirection: CGFloat = 0.0
+            switch (self.direction) {
+            case .Top, .Bottom:
+                velocityForSelectedDirection = velocity.y
+            case .Left, .Right:
+                velocityForSelectedDirection = velocity.x
+            }
+            
+            if velocityForSelectedDirection > self.panCompletionThreshold && (self.direction == .Right || self.direction == .Bottom) {
+                self.finishInteractiveTransition()
+            } else if velocityForSelectedDirection < -self.panCompletionThreshold && self.direction == .Left {
+                self.finishInteractiveTransition()
+            } else {
+                self.cancelInteractiveTransition()
+            }
+            
+            self.isInteractive = false
+        }
     }
-    
-    // MARK: UIViewControllerAnimatedTransitioning
+}
+
+// MARK: UIViewControllerAnimatedTransitioning
+
+extension ARNTransitionAnimator: UIViewControllerAnimatedTransitioning {
     
     public func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
         return self.transitionDuration
@@ -185,7 +244,41 @@ UIGestureRecognizerDelegate {
         }
     }
     
-    // MARK: UIViewControllerInteractiveTransitioning
+    public func animationEnded(transitionCompleted: Bool) {
+        self.transitionContext = nil
+    }
+}
+
+// MARK: UIViewControllerTransitioningDelegate
+
+extension ARNTransitionAnimator: UIViewControllerTransitioningDelegate {
+    
+    public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return self
+    }
+    
+    public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return self
+    }
+    
+    public func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        if self.gesture != nil && (self.handlePanType == .Push || self.handlePanType == .Present) {
+            return self
+        }
+        return nil
+    }
+    
+    public func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        if self.gesture != nil && (self.handlePanType == .Pop || self.handlePanType == .Dismiss) {
+            return self
+        }
+        return nil
+    }
+}
+
+// MARK: UIViewControllerInteractiveTransitioning
+
+extension ARNTransitionAnimator: UIViewControllerInteractiveTransitioning {
     
     public override func startInteractiveTransition(transitionContext: UIViewControllerContextTransitioning) {
         let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
@@ -204,6 +297,11 @@ UIGestureRecognizerDelegate {
             containerView.bringSubviewToFront(fromVC.view)
         }
     }
+}
+
+// MARK: UIPercentDrivenInteractiveTransition
+
+extension ARNTransitionAnimator {
     
     public override func updateInteractiveTransition(percentComplete: CGFloat) {
         if let transitionContext = self.transitionContext {
@@ -249,32 +347,11 @@ UIGestureRecognizerDelegate {
             }
         }
     }
-    
-    // MARK: UIViewControllerTransitioning Delegate
-    
-    public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return self
-    }
-    
-    public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return self
-    }
-    
-    public func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        if self.needPresentationInteractive == true {
-            return self
-        }
-        return nil
-    }
-    
-    public func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        if self.needDismissalInteractive == true {
-            return self
-        }
-        return nil
-    }
-    
-    // MARK: Gesture Delegate
+}
+
+// MARK: UIGestureRecognizerDelegate
+
+extension ARNTransitionAnimator: UIGestureRecognizerDelegate {
     
     public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
@@ -282,84 +359,5 @@ UIGestureRecognizerDelegate {
     
     public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailByGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
-    }
-    
-    // MARK: Gesture
-    
-    private func handlePan(recognizer: UIPanGestureRecognizer) {
-        var window : UIWindow? = nil
-        
-        switch (self.operationType) {
-        case .Push, .Present:
-            window = self.fromVC.view.window
-        case .Pop, .Dismiss:
-            window = self.toVC.view.window
-        }
-        
-        var location = recognizer.locationInView(window)
-        location = CGPointApplyAffineTransform(location, CGAffineTransformInvert(recognizer.view!.transform))
-        var velocity = recognizer .velocityInView(window)
-        velocity = CGPointApplyAffineTransform(velocity, CGAffineTransformInvert(recognizer.view!.transform))
-        
-        if recognizer.state == .Began {
-            self.isInteractive = true
-            switch (self.direction) {
-            case .Top, .Bottom:
-                self.panLocationStart = location.y
-            case .Left, .Right:
-                self.panLocationStart = location.x
-            }
-            
-            switch (self.operationType) {
-            case .Push:
-                self.fromVC.navigationController?.pushViewController(self.toVC, animated: true)
-            case .Present:
-                self.fromVC.presentViewController(self.toVC, animated: true, completion: nil)
-            case .Pop:
-                self.toVC.navigationController?.popViewControllerAnimated(true)
-            case .Dismiss:
-                self.toVC.dismissViewControllerAnimated(true, completion: nil)
-            }
-        } else if recognizer.state == .Changed {
-            var animationRatio: CGFloat = 0.0
-            
-            var bounds = CGRectZero
-            switch (self.operationType) {
-            case .Push, .Present:
-                bounds = self.fromVC.view.bounds
-            case .Pop, .Dismiss:
-                bounds = self.toVC.view.bounds
-            }
-            
-            switch self.direction {
-            case .Top:
-                animationRatio = (self.panLocationStart - location.y) / CGRectGetHeight(bounds)
-            case .Bottom:
-                animationRatio = (location.y - self.panLocationStart) / CGRectGetHeight(bounds)
-            case .Left:
-                animationRatio = (self.panLocationStart - location.x) / CGRectGetWidth(bounds)
-            case .Right:
-                animationRatio = (location.x - self.panLocationStart) / CGRectGetWidth(bounds)
-            }
-            self.updateInteractiveTransition(animationRatio)
-        } else if recognizer.state == .Ended {
-            var velocityForSelectedDirection: CGFloat = 0.0
-            switch (self.direction) {
-            case .Top, .Bottom:
-                velocityForSelectedDirection = velocity.y
-            case .Left, .Right:
-                velocityForSelectedDirection = velocity.x
-            }
-            
-            if velocityForSelectedDirection > self.panCompletionThreshold && (self.direction == .Right || self.direction == .Bottom) {
-                self.finishInteractiveTransition()
-            } else if velocityForSelectedDirection < -self.panCompletionThreshold && self.direction == .Left {
-                self.finishInteractiveTransition()
-            } else {
-                self.cancelInteractiveTransition()
-            }
-            
-            self.isInteractive = false
-        }
     }
 }
