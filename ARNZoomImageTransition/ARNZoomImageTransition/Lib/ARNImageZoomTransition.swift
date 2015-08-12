@@ -37,12 +37,11 @@ import UIKit
 
 class ARNImageZoomTransition {
     
-    class func createAnimator(isDismiss: Bool, fromVC: UIViewController, toVC: UIViewController) -> ARNTransitionAnimator {
-        var animator = ARNTransitionAnimator(parentController: fromVC, modalViewController: toVC)
+    class func createAnimator(operationType: ARNTransitionAnimatorOperation, fromVC: UIViewController, toVC: UIViewController) -> ARNTransitionAnimator {
+        var animator = ARNTransitionAnimator(operationType: operationType, fromVC: fromVC, toVC: toVC)
         
         if let sourceTransition = fromVC as? ARNImageTransitionZoomable, let destinationTransition = toVC as? ARNImageTransitionZoomable {
             toVC.view.layoutSubviews()
-            animator.isDismiss = isDismiss
             
             animator.presentationBeforeHandler = { (containerView: UIView) in
                 containerView.addSubview(fromVC.view)
@@ -51,7 +50,7 @@ class ARNImageZoomTransition {
                 // Update Auto Layout
                 toVC.view.layoutIfNeeded()
                 
-                if isDismiss == true {
+                if operationType == .Pop || operationType == .Dismiss {
                     containerView.bringSubviewToFront(fromVC.view)
                 }
                 
@@ -84,7 +83,7 @@ class ARNImageZoomTransition {
                 containerView.addSubview(fromVC.view)
                 containerView.addSubview(toVC.view)
                 
-                if isDismiss == true {
+                if operationType == .Pop || operationType == .Dismiss {
                     containerView.bringSubviewToFront(fromVC.view)
                 }
                 

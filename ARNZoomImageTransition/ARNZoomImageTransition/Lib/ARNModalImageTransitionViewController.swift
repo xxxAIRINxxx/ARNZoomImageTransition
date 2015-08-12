@@ -13,14 +13,14 @@ class ARNModalImageTransitionViewController: UIViewController, UIViewControllerT
     weak var fromVC : UIViewController?
 
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let animator = ARNImageZoomTransition.createAnimator(false, fromVC: source, toVC: presented)
+        let animator = ARNImageZoomTransition.createAnimator(.Present, fromVC: source, toVC: presented)
         self.fromVC = source
         
         return animator
     }
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let animator = ARNImageZoomTransition.createAnimator(true, fromVC: self, toVC: self.fromVC!)
+        let animator = ARNImageZoomTransition.createAnimator(.Dismiss, fromVC: self, toVC: self.fromVC!)
         
         return animator
     }

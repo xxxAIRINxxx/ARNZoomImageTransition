@@ -20,8 +20,12 @@ class ARNImageTransitionNavigationController: UINavigationController, UINavigati
         fromViewController fromVC: UIViewController,
         toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
     {
-        var animator = ARNImageZoomTransition.createAnimator((operation == .Pop), fromVC: fromVC, toVC: toVC)
+        if operation == .Push {
+            return ARNImageZoomTransition.createAnimator(.Push, fromVC: fromVC, toVC: toVC)
+        } else if operation == .Pop {
+            return ARNImageZoomTransition.createAnimator(.Pop, fromVC: fromVC, toVC: toVC)
+        }
         
-        return animator
+        return nil
     }
 }
