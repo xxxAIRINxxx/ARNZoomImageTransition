@@ -54,7 +54,6 @@ class ARNImageZoomTransition {
                 containerView.addSubview(fromVC!.view)
                 containerView.addSubview(toVC!.view)
                 
-                // Update Auto Layout
                 toVC!.view.layoutIfNeeded()
                 
                 if operationType == .Pop || operationType == .Dismiss {
