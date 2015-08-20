@@ -4,7 +4,7 @@
 
 ![capture](capture.gif "capture")
 
-Custom image zooming animation transition. (Swift lang)
+Custom image zooming animation transition. & interactive transition (Swift lang)
 
 ## Requirements
 
@@ -15,6 +15,7 @@ Custom image zooming animation transition. (Swift lang)
 ## Known Issues
 
 * iOS 7 not working
+* Pop interactive transition not working...
 
 ## License
 
