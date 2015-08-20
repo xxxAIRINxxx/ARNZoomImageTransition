@@ -12,11 +12,11 @@ class DetailViewController: UIViewController, ARNImageTransitionZoomable {
     
     @IBOutlet weak var imageView : UIImageView!
     
-    // MARK: - ARNImageTransitionZoomable
-    
     deinit {
         println("deinit DetailViewController")
     }
+    
+    // MARK: - ARNImageTransitionZoomable
     
     func createTransitionImageView() -> UIImageView {
         var imageView = UIImageView(image: self.imageView.image)
@@ -31,11 +31,17 @@ class DetailViewController: UIViewController, ARNImageTransitionZoomable {
         self.imageView.hidden = true
     }
     
-    func presentationCompletionAction() {
+    func presentationCompletionAction(completeTransition: Bool) {
         self.imageView.hidden = false
     }
     
     func dismissalBeforeAction() {
         self.imageView.hidden = true
+    }
+    
+    func dismissalCompletionAction(completeTransition: Bool) {
+        if !completeTransition {
+            self.imageView.hidden = false
+        }
     }
 }

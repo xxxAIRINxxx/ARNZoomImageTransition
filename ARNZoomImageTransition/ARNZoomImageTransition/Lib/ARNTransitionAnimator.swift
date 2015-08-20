@@ -28,13 +28,15 @@ public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition {
     public var direction : ARNTransitionAnimatorDirection = .Bottom
     public var panCompletionThreshold : CGFloat = 100.0
     
-    public var presentationBeforeHandler : ((containerView: UIView) ->())?
+    public var presentationBeforeHandler : ((containerView: UIView, transitionContext: UIViewControllerContextTransitioning) ->())?
     public var presentationAnimationHandler : ((containerView: UIView, percentComplete: CGFloat) ->())?
-    public var presentationCompletionHandler : ((containerView: UIView, didComplete: Bool) ->())?
+    public var presentationCancelAnimationHandler : ((containerView: UIView) ->())?
+    public var presentationCompletionHandler : ((containerView: UIView, completeTransition: Bool) ->())?
     
-    public var dismissalBeforeAnimationHandler : ((containerView: UIView) ->())?
+    public var dismissalBeforeHandler : ((containerView: UIView, transitionContext: UIViewControllerContextTransitioning) ->())?
     public var dismissalAnimationHandler : ((containerView: UIView, percentComplete: CGFloat) ->())?
-    public var dismissalCompletionHandler : ((containerView: UIView, didComplete: Bool) ->())?
+    public var dismissalCancelAnimationHandler : ((containerView: UIView) ->())?
+    public var dismissalCompletionHandler : ((containerView: UIView, completeTransition: Bool) ->())?
     
     public var usingSpringWithDamping : CGFloat = 1.0
     public var transitionDuration : NSTimeInterval = 0.5
@@ -46,9 +48,11 @@ public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition {
         }
     }
     
-    private var fromVC : UIViewController
-    private var toVC : UIViewController
+    private weak var fromVC : UIViewController!
+    private weak var toVC : UIViewController!
+    
     private var operationType : ARNTransitionAnimatorOperation
+    private var isPresenting : Bool = true
     
     private var gesture :UIPanGestureRecognizer?
     private var transitionContext : UIViewControllerContextTransitioning?
@@ -65,7 +69,15 @@ public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition {
         self.operationType = operationType
         self.fromVC = fromVC
         self.toVC = toVC
-        self.toVC.modalPresentationStyle = .Custom
+        // @see : http://stackoverflow.com/questions/24338700/from-view-controller-disappears-using-uiviewcontrollercontexttransitioning
+        //self.toVC.modalPresentationStyle = .Custom
+        
+        switch (self.operationType) {
+        case .Push, .Present:
+            self.isPresenting = true
+        case .Pop, .Dismiss:
+            self.isPresenting = false
+        }
     }
     
     // MARK: Public Methods
@@ -95,34 +107,38 @@ public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition {
     
     // MARK: Private Methods
     
-    private func fireBeforeHandler(containerView: UIView) {
-        switch (self.operationType) {
-        case .Push, .Present:
-            self.presentationBeforeHandler?(containerView: containerView)
-        case .Pop, .Dismiss:
-            self.dismissalBeforeAnimationHandler?(containerView: containerView)
+    private func fireBeforeHandler(containerView: UIView, transitionContext: UIViewControllerContextTransitioning) {
+        if self.isPresenting {
+            self.presentationBeforeHandler?(containerView: containerView, transitionContext: transitionContext)
+        } else {
+            self.dismissalBeforeHandler?(containerView: containerView, transitionContext: transitionContext)
         }
     }
     
     private func fireAnimationHandler(containerView: UIView, percentComplete: CGFloat) {
-        switch (self.operationType) {
-        case .Push, .Present:
+        if self.isPresenting {
             self.presentationAnimationHandler?(containerView: containerView, percentComplete: percentComplete)
-        case .Pop, .Dismiss:
+        } else {
             self.dismissalAnimationHandler?(containerView: containerView, percentComplete: percentComplete)
         }
     }
-    
-    private func fireCompletionHandler(containerView: UIView, didComplete: Bool) {
-        switch (self.operationType) {
-        case .Push, .Present:
-            self.presentationCompletionHandler?(containerView: containerView, didComplete: didComplete)
-        case .Pop, .Dismiss:
-            self.dismissalCompletionHandler?(containerView: containerView, didComplete: didComplete)
+
+    private func fireCancelAnimationHandler(containerView: UIView) {
+        if self.isPresenting {
+            self.presentationCancelAnimationHandler?(containerView: containerView)
+        } else {
+            self.dismissalCancelAnimationHandler?(containerView: containerView)
+        }
+    }
+    private func fireCompletionHandler(containerView: UIView, completeTransition: Bool) {
+        if self.isPresenting {
+            self.presentationCompletionHandler?(containerView: containerView, completeTransition: completeTransition)
+        } else {
+            self.dismissalCompletionHandler?(containerView: containerView, completeTransition: completeTransition)
         }
     }
     
-    private func animateWithDuration(duration: NSTimeInterval, containerView: UIView, didComplete: Bool, completion: (() -> Void)?) {
+    private func animateWithDuration(duration: NSTimeInterval, containerView: UIView, completeTransition: Bool, completion: (() -> Void)?) {
         UIView.animateWithDuration(
             duration,
             delay: 0,
@@ -130,13 +146,13 @@ public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition {
             initialSpringVelocity: self.initialSpringVelocity,
             options: .CurveEaseOut,
             animations: {
-                if didComplete == true {
+                if completeTransition {
                     self.fireAnimationHandler(containerView, percentComplete: 1.0)
                 } else {
-                    self.fireBeforeHandler(containerView)
+                    self.fireCancelAnimationHandler(containerView)
                 }
             }, completion: { finished in
-                self.fireCompletionHandler(containerView, didComplete: didComplete)
+                self.fireCompletionHandler(containerView, completeTransition: completeTransition)
                 completion?()
         })
     }
@@ -230,16 +246,15 @@ extension ARNTransitionAnimator: UIViewControllerAnimatedTransitioning {
     }
     
     public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
-        let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let containerView = transitionContext.containerView()
         
-        self.fireBeforeHandler(containerView)
+        self.transitionContext = transitionContext
+        self.fireBeforeHandler(containerView, transitionContext: transitionContext)
         
         self.animateWithDuration(
             self.transitionDuration(transitionContext),
             containerView: containerView,
-            didComplete: true) {
+            completeTransition: true) {
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
         }
     }
@@ -254,15 +269,18 @@ extension ARNTransitionAnimator: UIViewControllerAnimatedTransitioning {
 extension ARNTransitionAnimator: UIViewControllerTransitioningDelegate {
     
     public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        self.isPresenting = true
         return self
     }
     
     public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        self.isPresenting = false
         return self
     }
     
     public func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         if self.gesture != nil && (self.handlePanType == .Push || self.handlePanType == .Present) {
+            self.isPresenting = true
             return self
         }
         return nil
@@ -270,6 +288,7 @@ extension ARNTransitionAnimator: UIViewControllerTransitioningDelegate {
     
     public func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         if self.gesture != nil && (self.handlePanType == .Pop || self.handlePanType == .Dismiss) {
+            self.isPresenting = false
             return self
         }
         return nil
@@ -285,17 +304,8 @@ extension ARNTransitionAnimator: UIViewControllerInteractiveTransitioning {
         let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let containerView = transitionContext.containerView()
         
-        self.fireBeforeHandler(containerView)
         self.transitionContext = transitionContext
-        
-        switch (self.operationType) {
-        case .Push, .Present:
-            toVC.view.hidden = true
-            containerView.addSubview(toVC.view)
-        case .Pop, .Dismiss:
-            fromVC.view.hidden = true
-            containerView.bringSubviewToFront(fromVC.view)
-        }
+        self.fireBeforeHandler(containerView, transitionContext: transitionContext)
     }
 }
 
@@ -305,18 +315,6 @@ extension ARNTransitionAnimator {
     
     public override func updateInteractiveTransition(percentComplete: CGFloat) {
         if let transitionContext = self.transitionContext {
-            
-            // FIXME! : deal for view is displayed only for a moment
-            let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
-            let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
-            
-            switch (self.operationType) {
-            case .Push, .Present:
-                toVC.view.hidden = false
-            case .Pop, .Dismiss:
-                fromVC.view.hidden = false
-            }
-            
             let containerView = transitionContext.containerView()
             self.fireAnimationHandler(containerView, percentComplete: percentComplete)
         }
@@ -324,12 +322,11 @@ extension ARNTransitionAnimator {
     
     public override func finishInteractiveTransition() {
         if let transitionContext = self.transitionContext {
-            
             let containerView = transitionContext.containerView()
             self.animateWithDuration(
                 self.transitionDuration(transitionContext),
                 containerView: containerView,
-                didComplete: true) {
+                completeTransition: true) {
                     transitionContext.completeTransition(true)
             }
         }
@@ -337,12 +334,11 @@ extension ARNTransitionAnimator {
     
     public override func cancelInteractiveTransition() {
         if let transitionContext = self.transitionContext {
-            
             let containerView = transitionContext.containerView()
             self.animateWithDuration(
                 self.transitionDuration(transitionContext),
                 containerView: containerView,
-                didComplete: false) {
+                completeTransition: false) {
                     transitionContext.completeTransition(false)
             }
         }

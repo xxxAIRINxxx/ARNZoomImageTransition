@@ -18,10 +18,13 @@ import UIKit
     func presentationBeforeAction()
     
     optional
-    func presentationAnimationAction()
+    func presentationAnimationAction(percentComplete: CGFloat)
     
     optional
-    func presentationCompletionAction()
+    func presentationCancelAnimationAction()
+    
+    optional
+    func presentationCompletionAction(completeTransition: Bool)
     
     // Dismiss, Pop
     
@@ -29,10 +32,13 @@ import UIKit
     func dismissalBeforeAction()
     
     optional
-    func dismissalAnimationAction()
+    func dismissalAnimationAction(percentComplete: CGFloat)
     
     optional
-    func dismissalCompletionAction()
+    func dismissalCancelAnimationAction()
+    
+    optional
+    func dismissalCompletionAction(completeTransition: Bool)
 }
 
 class ARNImageZoomTransition {
@@ -44,7 +50,7 @@ class ARNImageZoomTransition {
             toVC.view.layoutSubviews()
             
             animator.presentationBeforeHandler = { [weak fromVC, weak toVC
-                , weak sourceTransition, weak destinationTransition] (containerView: UIView) in
+                , weak sourceTransition, weak destinationTransition](containerView: UIView, transitionContext: UIViewControllerContextTransitioning) in
                 containerView.addSubview(fromVC!.view)
                 containerView.addSubview(toVC!.view)
                 
@@ -70,20 +76,20 @@ class ARNImageZoomTransition {
                     
                     toVC!.view.alpha = 1.0
                     
-                    sourceTransition!.presentationAnimationAction?()
-                    destinationTransition!.presentationAnimationAction?()
+                    sourceTransition!.presentationAnimationAction?(percentComplete)
+                    destinationTransition!.presentationAnimationAction?(percentComplete)
                 }
                 
-                animator.presentationCompletionHandler = { (containerView: UIView, didComplete: Bool) in
+                animator.presentationCompletionHandler = { (containerView: UIView, completeTransition: Bool) in
                     sourceImageView.removeFromSuperview()
                     
-                    sourceTransition!.presentationCompletionAction?()
-                    destinationTransition!.presentationCompletionAction?()
+                    sourceTransition!.presentationCompletionAction?(completeTransition)
+                    destinationTransition!.presentationCompletionAction?(completeTransition)
                 }
             }
             
-            animator.dismissalBeforeAnimationHandler = { [weak fromVC, weak toVC
-                , weak sourceTransition, weak destinationTransition] (containerView: UIView) in
+            animator.dismissalBeforeHandler = { [weak fromVC, weak toVC
+                , weak sourceTransition, weak destinationTransition] (containerView: UIView, transitionContext: UIViewControllerContextTransitioning) in
                 containerView.addSubview(fromVC!.view)
                 containerView.addSubview(toVC!.view)
                 
@@ -99,18 +105,24 @@ class ARNImageZoomTransition {
                 destinationTransition!.dismissalBeforeAction?()
                 
                 animator.dismissalAnimationHandler = { (containerView: UIView, percentComplete: CGFloat) in
-                    sourceImageView.frame = destinationImageView.frame
-                    fromVC!.view.alpha = 0.0
+                    let frame = CGRectMake(
+                        destinationImageView.frame.origin.x * percentComplete,
+                        destinationImageView.frame.origin.y * percentComplete,
+                        destinationImageView.frame.size.width * percentComplete,
+                        destinationImageView.frame.size.height * percentComplete
+                    )
+                    sourceImageView.frame = frame
+                    fromVC!.view.alpha = 1.0 - (1.0 * percentComplete)
                     
-                    sourceTransition!.dismissalAnimationAction?()
-                    destinationTransition!.dismissalAnimationAction?()
+                    sourceTransition!.dismissalAnimationAction?(percentComplete)
+                    destinationTransition!.dismissalAnimationAction?(percentComplete)
                 }
                 
-                animator.dismissalCompletionHandler = { (containerView: UIView, didComplete: Bool) in
+                animator.dismissalCompletionHandler = { (containerView: UIView, completeTransition: Bool) in
                     sourceImageView.removeFromSuperview()
                     
-                    sourceTransition!.dismissalCompletionAction?()
-                    destinationTransition!.dismissalCompletionAction?()
+                    sourceTransition!.dismissalCompletionAction?(completeTransition)
+                    destinationTransition!.dismissalCompletionAction?(completeTransition)
                 }
             }
         }

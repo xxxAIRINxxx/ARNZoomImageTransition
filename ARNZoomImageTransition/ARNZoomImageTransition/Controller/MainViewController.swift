@@ -34,9 +34,9 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
     
     func updateNavigationItem() {
         if isModeModal {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Push", style: .Done, target: self, action: "modePush")
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Modal", style: .Done, target: self, action: "modePush")
         } else {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Modal", style: .Done, target: self, action: "modeModal")
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Push", style: .Done, target: self, action: "modeModal")
         }
         
         if isModeInteractive {
@@ -65,19 +65,6 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
         self.isModeInteractive = false
         self.updateNavigationItem()
     }
-
-    
-    // MARK: - ARNImageTransitionZoomable
-    
-    func createTransitionImageView() -> UIImageView {
-        var imageView = UIImageView(image: self.selectedImageView!.image)
-        imageView.contentMode = self.selectedImageView!.contentMode
-        imageView.clipsToBounds = true
-        imageView.userInteractionEnabled = false
-        imageView.frame = self.selectedImageView!.convertRect(self.selectedImageView!.frame, toView: self.view)
-        
-        return imageView
-    }
     
     func handleTransition() {
         if isModeInteractive {
@@ -97,19 +84,104 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
     }
     
     func showInteractive() {
+        let storyboard = UIStoryboard(name: "ModalViewController", bundle: nil)
+        let controller = storyboard.instantiateViewControllerWithIdentifier("ModalViewController") as! ModalViewController
+        
+        let operationType: ARNTransitionAnimatorOperation = isModeModal ? .Present : .Push
+        var animator = ARNTransitionAnimator(operationType: operationType, fromVC: self, toVC: controller)
+        
+        animator.presentationBeforeHandler = { (containerView: UIView, transitionContext: UIViewControllerContextTransitioning) in
+            let fromNavVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)! as! ARNImageTransitionNavigationController
+            let fromVC = fromNavVC.topViewController! as! MainViewController
+            let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)! as! ModalViewController
+            containerView.addSubview(fromVC.view)
+            containerView.addSubview(toVC.view)
+            toVC.closeButton.hidden = true
+            
+            // Update Auto Layout
+            toVC.view.layoutIfNeeded()
+            
+            let sourceImageView = fromVC.createTransitionImageView()
+            let destinationImageView = toVC.createTransitionImageView()
+            
+            containerView.addSubview(sourceImageView)
+            
+            toVC.presentationBeforeAction()
+            
+            toVC.view.alpha = 0.0
+            
+            animator.presentationAnimationHandler = { (containerView: UIView, percentComplete: CGFloat) in
+                sourceImageView.frame = destinationImageView.frame
+                
+                toVC.view.alpha = 1.0
+            }
+            
+            animator.presentationCompletionHandler = { (containerView: UIView, completeTransition: Bool) in
+                sourceImageView.removeFromSuperview()
+                
+                toVC.presentationCompletionAction(completeTransition)
+            }
+        }
+        
+        animator.dismissalBeforeHandler = { (containerView: UIView, transitionContext: UIViewControllerContextTransitioning) in
+            let toNavVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)! as! ARNImageTransitionNavigationController
+            let toVC = toNavVC.topViewController! as! MainViewController
+            let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)! as! ModalViewController
+            let sourceImageView = fromVC.createTransitionImageView()
+            let destinationImageView = toVC.createTransitionImageView()
+            containerView.addSubview(sourceImageView)
+            
+            let sourceFrame = sourceImageView.frame;
+            let destFrame = destinationImageView.frame;
+            
+            fromVC.dismissalBeforeAction()
+            
+            animator.dismissalCancelAnimationHandler = { (containerView: UIView) in
+                sourceImageView.frame = sourceFrame
+                fromVC.view.alpha = 1.0
+            }
+            
+            animator.dismissalAnimationHandler = { (containerView: UIView, percentComplete: CGFloat) in
+                let frame = CGRectMake(
+                    destFrame.origin.x - (destFrame.origin.x - sourceFrame.origin.x) * (1 - percentComplete),
+                    destFrame.origin.y - (destFrame.origin.y - sourceFrame.origin.y) * (1 - percentComplete),
+                    destFrame.size.width + (sourceFrame.size.width - destFrame.size.width) * (1 - percentComplete),
+                    destFrame.size.height + (sourceFrame.size.height - destFrame.size.height) * (1 - percentComplete)
+                )
+                sourceImageView.frame = frame
+                fromVC.view.alpha = 1.0 - (1.0 * percentComplete)
+            }
+            
+            animator.dismissalCompletionHandler = { (containerView: UIView, completeTransition: Bool) in
+                sourceImageView.removeFromSuperview()
+                
+                fromVC.dismissalCompletionAction(completeTransition)
+            }
+        }
+        
+        self.animator = animator
+        
         if isModeModal {
-            let storyboard = UIStoryboard(name: "ModalViewController", bundle: nil)
-            let controller = storyboard.instantiateViewControllerWithIdentifier("ModalViewController") as! ModalViewController
-            self.animator = ARNImageZoomTransition.createAnimator(.Present, fromVC: self, toVC: controller)
             self.animator!.handlePanType = .Dismiss
+            controller.transitioningDelegate = self.animator
             self.presentViewController(controller, animated: true, completion: nil)
         } else {
-            let storyboard = UIStoryboard(name: "DetailViewController", bundle: nil)
-            let controller = storyboard.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
-            self.animator = ARNImageZoomTransition.createAnimator(.Push, fromVC: self, toVC: controller)
             self.animator!.handlePanType = .Pop
+            self.navigationController?.transitioningDelegate = self.animator
             self.navigationController?.pushViewController(controller, animated: true)
         }
+    }
+
+    // MARK: - ARNImageTransitionZoomable
+    
+    func createTransitionImageView() -> UIImageView {
+        var imageView = UIImageView(image: self.selectedImageView!.image)
+        imageView.contentMode = self.selectedImageView!.contentMode
+        imageView.clipsToBounds = true
+        imageView.userInteractionEnabled = false
+        imageView.frame = self.selectedImageView!.convertRect(self.selectedImageView!.frame, toView: self.view)
+        
+        return imageView
     }
     
     // MARK: - UICollectionViewDataSource

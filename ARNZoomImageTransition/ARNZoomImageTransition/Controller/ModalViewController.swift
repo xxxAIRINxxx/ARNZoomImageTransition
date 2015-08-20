@@ -11,6 +11,7 @@ import UIKit
 class ModalViewController: ARNModalImageTransitionViewController, ARNImageTransitionZoomable {
 
     @IBOutlet weak var imageView : UIImageView!
+    @IBOutlet weak var closeButton : UIButton!
     
     @IBAction func tapCloseButton(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -35,11 +36,17 @@ class ModalViewController: ARNModalImageTransitionViewController, ARNImageTransi
         self.imageView.hidden = true
     }
     
-    func presentationCompletionAction() {
+    func presentationCompletionAction(completeTransition: Bool) {
         self.imageView.hidden = false
     }
     
     func dismissalBeforeAction() {
         self.imageView.hidden = true
+    }
+    
+    func dismissalCompletionAction(completeTransition: Bool) {
+        if !completeTransition {
+            self.imageView.hidden = false
+        }
     }
 }
