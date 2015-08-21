@@ -155,11 +155,11 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
         self.animator = animator
         
         if isModeModal {
-            self.animator!.handlePanType = .Dismiss
+            self.animator!.interactiveType = .Dismiss
             controller.transitioningDelegate = self.animator
             self.presentViewController(controller, animated: true, completion: nil)
         } else {
-            self.animator!.handlePanType = .Pop
+            self.animator!.interactiveType = .Pop
             self.navigationController?.transitioningDelegate = self.animator
             self.navigationController?.pushViewController(controller, animated: true)
         }

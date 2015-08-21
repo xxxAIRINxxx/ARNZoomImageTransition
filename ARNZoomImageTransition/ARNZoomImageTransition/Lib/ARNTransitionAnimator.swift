@@ -17,6 +17,7 @@ public enum ARNTransitionAnimatorDirection: Int {
 }
 
 public enum ARNTransitionAnimatorOperation: Int {
+    case None
     case Push
     case Pop
     case Present
@@ -42,9 +43,13 @@ public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition {
     public var transitionDuration : NSTimeInterval = 0.5
     public var initialSpringVelocity : CGFloat = 0.1
     
-    public var handlePanType : ARNTransitionAnimatorOperation = .Push {
+    public var interactiveType : ARNTransitionAnimatorOperation = .None {
         didSet {
-            self.registerPanGesture()
+            if self.interactiveType == .None {
+                self.unregisterPanGesture()
+            } else {
+                self.registerPanGesture()
+            }
         }
     }
     
@@ -77,25 +82,29 @@ public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition {
             self.isPresenting = true
         case .Pop, .Dismiss:
             self.isPresenting = false
+        case .None:
+            break
         }
     }
     
-    // MARK: Public Methods
+    // MARK: Private Methods
     
-    public func registerPanGesture() {
+    private func registerPanGesture() {
         self.unregisterPanGesture()
         
         self.gesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
         self.gesture!.delegate = self
-        switch (self.handlePanType) {
+        switch (self.interactiveType) {
         case .Push, .Present:
             self.fromVC.view.addGestureRecognizer(self.gesture!)
         case .Pop, .Dismiss:
             self.toVC.view.addGestureRecognizer(self.gesture!)
+        case .None:
+            break
         }
     }
     
-    public func unregisterPanGesture() {
+    private func unregisterPanGesture() {
         if let _gesture = self.gesture {
             if let _view = _gesture.view {
                 _view.removeGestureRecognizer(_gesture)
@@ -104,8 +113,6 @@ public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition {
         }
         self.gesture = nil
     }
-    
-    // MARK: Private Methods
     
     private func fireBeforeHandler(containerView: UIView, transitionContext: UIViewControllerContextTransitioning) {
         if self.isPresenting {
@@ -162,11 +169,13 @@ public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition {
     func handlePan(recognizer: UIPanGestureRecognizer) {
         var window : UIWindow? = nil
         
-        switch (self.handlePanType) {
+        switch (self.interactiveType) {
         case .Push, .Present:
             window = self.fromVC.view.window
         case .Pop, .Dismiss:
             window = self.toVC.view.window
+        case .None:
+            return
         }
         
         var location = recognizer.locationInView(window)
@@ -183,7 +192,7 @@ public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition {
                 self.panLocationStart = location.x
             }
             
-            switch (self.handlePanType) {
+            switch (self.interactiveType) {
             case .Push:
                 self.fromVC.navigationController?.pushViewController(self.toVC, animated: true)
             case .Present:
@@ -192,16 +201,20 @@ public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition {
                 self.toVC.navigationController?.popViewControllerAnimated(true)
             case .Dismiss:
                 self.toVC.dismissViewControllerAnimated(true, completion: nil)
+            case .None:
+                break
             }
         } else if recognizer.state == .Changed {
             var animationRatio: CGFloat = 0.0
             
             var bounds = CGRectZero
-            switch (self.handlePanType) {
+            switch (self.interactiveType) {
             case .Push, .Present:
                 bounds = self.fromVC.view.bounds
             case .Pop, .Dismiss:
                 bounds = self.toVC.view.bounds
+            case .None:
+                break
             }
             
             switch self.direction {
@@ -279,7 +292,7 @@ extension ARNTransitionAnimator: UIViewControllerTransitioningDelegate {
     }
     
     public func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        if self.gesture != nil && (self.handlePanType == .Push || self.handlePanType == .Present) {
+        if self.gesture != nil && (self.interactiveType == .Push || self.interactiveType == .Present) {
             self.isPresenting = true
             return self
         }
@@ -287,7 +300,7 @@ extension ARNTransitionAnimator: UIViewControllerTransitioningDelegate {
     }
     
     public func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        if self.gesture != nil && (self.handlePanType == .Pop || self.handlePanType == .Dismiss) {
+        if self.gesture != nil && (self.interactiveType == .Pop || self.interactiveType == .Dismiss) {
             self.isPresenting = false
             return self
         }
