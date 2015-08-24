@@ -115,6 +115,7 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
             animator.presentationCompletionHandler = { (containerView: UIView, completeTransition: Bool) in
                 sourceImageView.removeFromSuperview()
                 
+                self!.presentationCompletionAction(completeTransition)
                 controller!.presentationCompletionAction(completeTransition)
             }
         }
@@ -148,6 +149,7 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
             animator.dismissalCompletionHandler = { (containerView: UIView, completeTransition: Bool) in
                 sourceImageView.removeFromSuperview()
                 
+                self!.dismissalCompletionAction(completeTransition)
                 controller!.dismissalCompletionAction(completeTransition)
             }
         }
@@ -175,6 +177,14 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
         imageView.frame = self.selectedImageView!.convertRect(self.selectedImageView!.frame, toView: self.view)
         
         return imageView
+    }
+    
+    func presentationCompletionAction(completeTransition: Bool) {
+        self.selectedImageView?.hidden = true
+    }
+    
+    func dismissalCompletionAction(completeTransition: Bool) {
+        self.selectedImageView?.hidden = false
     }
     
     // MARK: - UICollectionViewDataSource

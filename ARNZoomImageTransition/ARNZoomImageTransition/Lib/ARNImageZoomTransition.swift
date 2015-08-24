@@ -47,18 +47,14 @@ class ARNImageZoomTransition {
         var animator = ARNTransitionAnimator(operationType: operationType, fromVC: fromVC, toVC: toVC)
         
         if let sourceTransition = fromVC as? ARNImageTransitionZoomable, let destinationTransition = toVC as? ARNImageTransitionZoomable {
-            toVC.view.layoutSubviews()
             
             animator.presentationBeforeHandler = { [weak fromVC, weak toVC
                 , weak sourceTransition, weak destinationTransition](containerView: UIView, transitionContext: UIViewControllerContextTransitioning) in
                 containerView.addSubview(fromVC!.view)
                 containerView.addSubview(toVC!.view)
                 
+                toVC!.view.layoutSubviews()
                 toVC!.view.layoutIfNeeded()
-                
-                if operationType == .Pop || operationType == .Dismiss {
-                    containerView.bringSubviewToFront(fromVC!.view)
-                }
                 
                 let sourceImageView = sourceTransition!.createTransitionImageView()
                 let destinationImageView = destinationTransition!.createTransitionImageView()
@@ -89,12 +85,8 @@ class ARNImageZoomTransition {
             
             animator.dismissalBeforeHandler = { [weak fromVC, weak toVC
                 , weak sourceTransition, weak destinationTransition] (containerView: UIView, transitionContext: UIViewControllerContextTransitioning) in
-                containerView.addSubview(fromVC!.view)
                 containerView.addSubview(toVC!.view)
-                
-                if operationType == .Pop || operationType == .Dismiss {
-                    containerView.bringSubviewToFront(fromVC!.view)
-                }
+                containerView.bringSubviewToFront(fromVC!.view)
                 
                 let sourceImageView = sourceTransition!.createTransitionImageView()
                 let destinationImageView = destinationTransition!.createTransitionImageView()
@@ -104,14 +96,8 @@ class ARNImageZoomTransition {
                 destinationTransition!.dismissalBeforeAction?()
                 
                 animator.dismissalAnimationHandler = { (containerView: UIView, percentComplete: CGFloat) in
-                    let frame = CGRectMake(
-                        destinationImageView.frame.origin.x * percentComplete,
-                        destinationImageView.frame.origin.y * percentComplete,
-                        destinationImageView.frame.size.width * percentComplete,
-                        destinationImageView.frame.size.height * percentComplete
-                    )
-                    sourceImageView.frame = frame
-                    fromVC!.view.alpha = 1.0 - (1.0 * percentComplete)
+                    sourceImageView.frame = destinationImageView.frame
+                    fromVC!.view.alpha = 0.0
                     
                     sourceTransition!.dismissalAnimationAction?(percentComplete)
                     destinationTransition!.dismissalAnimationAction?(percentComplete)
