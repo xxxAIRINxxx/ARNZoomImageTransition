@@ -4,7 +4,13 @@
 
 ![capture](capture.gif "capture")
 
-Custom image zooming animation transition. & interactive transition (Swift lang)
+Custom image zooming animation transition. & interactive transition. written in Swift.
+
+
+## Using Transition Animator
+
+[ARNTransitionAnimator](https://github.com/xxxAIRINxxx/ARNTransitionAnimator)
+
 
 ## Requirements
 
@@ -12,10 +18,12 @@ Custom image zooming animation transition. & interactive transition (Swift lang)
 * iOS 8.1+
 * Swift lang 1.2
 
+
 ## Known Issues
 
 * iOS 7 not working
 * Pop interactive transition not working...
+
 
 ## License
 
