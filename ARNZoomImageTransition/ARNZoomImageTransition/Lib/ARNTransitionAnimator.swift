@@ -108,6 +108,7 @@ public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition {
         
         self.gesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
         self.gesture!.delegate = self
+        self.gesture!.maximumNumberOfTouches = 1
         
         if let _gestureTargetView = self.gestureTargetView {
             _gestureTargetView.addGestureRecognizer(self.gesture!)
@@ -242,7 +243,11 @@ public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition {
                 animationRatio = (location.x - self.panLocationStart) / CGRectGetWidth(bounds)
             }
             
-            if self.contentScrollView != nil && animationRatio <= 0 {
+            if animationRatio < 0 {
+                animationRatio = 0
+            }
+            
+            if self.contentScrollView != nil && animationRatio < 0 {
                 self.startGestureTransition()
                 self.contentScrollView!.bounces = false
             } else {
