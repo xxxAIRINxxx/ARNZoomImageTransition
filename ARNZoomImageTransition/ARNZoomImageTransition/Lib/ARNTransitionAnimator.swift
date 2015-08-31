@@ -34,7 +34,14 @@ public class ARNTransitionAnimator: UIPercentDrivenInteractiveTransition {
     
     // interactive gesture
     
-    public weak var gestureTargetView : UIView?
+    public weak var gestureTargetView : UIView? {
+        willSet {
+            self.unregisterPanGesture()
+        }
+        didSet {
+            self.registerPanGesture()
+        }
+    }
     public var panCompletionThreshold : CGFloat = 100.0
     public var direction : ARNTransitionAnimatorDirection = .Bottom
     public var contentScrollView : UIScrollView? {
