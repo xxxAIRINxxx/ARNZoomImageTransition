@@ -372,8 +372,6 @@ extension ARNTransitionAnimator: UIViewControllerTransitioningDelegate {
 extension ARNTransitionAnimator: UIViewControllerInteractiveTransitioning {
     
     public override func startInteractiveTransition(transitionContext: UIViewControllerContextTransitioning) {
-        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
-        let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let containerView = transitionContext.containerView()
         
         self.transitionContext = transitionContext
