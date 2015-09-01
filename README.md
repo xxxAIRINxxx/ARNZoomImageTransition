@@ -22,7 +22,6 @@ Custom image zooming animation transition. & interactive transition. written in 
 ## Known Issues
 
 * iOS 7 not working
-* Pop interactive transition not working...
 
 
 ## License

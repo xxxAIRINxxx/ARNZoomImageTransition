@@ -88,7 +88,7 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
         let controller = storyboard.instantiateViewControllerWithIdentifier("ModalViewController") as! ModalViewController
         
         let operationType: ARNTransitionAnimatorOperation = isModeModal ? .Present : .Push
-        var animator = ARNTransitionAnimator(operationType: operationType, fromVC: self, toVC: controller)
+        let animator = ARNTransitionAnimator(operationType: operationType, fromVC: self, toVC: controller)
         
         animator.presentationBeforeHandler = { [weak self, weak controller] (containerView: UIView, transitionContext: UIViewControllerContextTransitioning) in
             containerView.addSubview(self!.view)
@@ -114,13 +114,15 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
             
             animator.presentationCompletionHandler = { (containerView: UIView, completeTransition: Bool) in
                 sourceImageView.removeFromSuperview()
-                
                 self!.presentationCompletionAction(completeTransition)
                 controller!.presentationCompletionAction(completeTransition)
             }
         }
         
         animator.dismissalBeforeHandler = { [weak self, weak controller] (containerView: UIView, transitionContext: UIViewControllerContextTransitioning) in
+            containerView.addSubview(self!.view)
+            containerView.bringSubviewToFront(controller!.view)
+            
             let sourceImageView = controller!.createTransitionImageView()
             let destinationImageView = self!.createTransitionImageView()
             containerView.addSubview(sourceImageView)
@@ -136,6 +138,7 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
             }
             
             animator.dismissalAnimationHandler = { (containerView: UIView, percentComplete: CGFloat) in
+                if percentComplete < -0.05 { return }
                 let frame = CGRectMake(
                     destFrame.origin.x - (destFrame.origin.x - sourceFrame.origin.x) * (1 - percentComplete),
                     destFrame.origin.y - (destFrame.origin.y - sourceFrame.origin.y) * (1 - percentComplete),
@@ -147,10 +150,9 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
             }
             
             animator.dismissalCompletionHandler = { (containerView: UIView, completeTransition: Bool) in
-                sourceImageView.removeFromSuperview()
-                
                 self!.dismissalCompletionAction(completeTransition)
                 controller!.dismissalCompletionAction(completeTransition)
+                sourceImageView.removeFromSuperview()
             }
         }
         
@@ -162,7 +164,9 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
             self.presentViewController(controller, animated: true, completion: nil)
         } else {
             self.animator!.interactiveType = .Pop
-            self.navigationController?.transitioningDelegate = self.animator
+            if let _nav = self.navigationController as? ARNImageTransitionNavigationController {
+                _nav.interactiveAnimator = self.animator!
+            }
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
@@ -170,7 +174,7 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
     // MARK: - ARNImageTransitionZoomable
     
     func createTransitionImageView() -> UIImageView {
-        var imageView = UIImageView(image: self.selectedImageView!.image)
+        let imageView = UIImageView(image: self.selectedImageView!.image)
         imageView.contentMode = self.selectedImageView!.contentMode
         imageView.clipsToBounds = true
         imageView.userInteractionEnabled = false
