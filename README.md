@@ -14,14 +14,9 @@ Custom image zooming animation transition. & interactive transition. written in 
 
 ## Requirements
 
-* Xcode 6.4
+* Xcode 7.0
 * iOS 8.1+
-* Swift lang 1.2
-
-
-## Known Issues
-
-* iOS 7 not working
+* Swift 2.0
 
 
 ## License
