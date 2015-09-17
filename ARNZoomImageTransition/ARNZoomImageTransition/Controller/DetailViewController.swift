@@ -13,13 +13,13 @@ class DetailViewController: UIViewController, ARNImageTransitionZoomable {
     @IBOutlet weak var imageView : UIImageView!
     
     deinit {
-        println("deinit DetailViewController")
+        print("deinit DetailViewController")
     }
     
     // MARK: - ARNImageTransitionZoomable
     
     func createTransitionImageView() -> UIImageView {
-        var imageView = UIImageView(image: self.imageView.image)
+        let imageView = UIImageView(image: self.imageView.image)
         imageView.contentMode = self.imageView.contentMode
         imageView.clipsToBounds = true
         imageView.userInteractionEnabled = false

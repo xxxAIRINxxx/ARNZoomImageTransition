@@ -44,7 +44,7 @@ import UIKit
 class ARNImageZoomTransition {
     
     class func createAnimator(operationType: ARNTransitionAnimatorOperation, fromVC: UIViewController, toVC: UIViewController) -> ARNTransitionAnimator {
-        var animator = ARNTransitionAnimator(operationType: operationType, fromVC: fromVC, toVC: toVC)
+        let animator = ARNTransitionAnimator(operationType: operationType, fromVC: fromVC, toVC: toVC)
         
         if let sourceTransition = fromVC as? ARNImageTransitionZoomable, let destinationTransition = toVC as? ARNImageTransitionZoomable {
             

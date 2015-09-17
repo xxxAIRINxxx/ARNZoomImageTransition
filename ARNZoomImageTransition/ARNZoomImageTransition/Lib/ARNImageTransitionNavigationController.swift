@@ -16,7 +16,7 @@ class ARNImageTransitionNavigationController: UINavigationController, UINavigati
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.interactivePopGestureRecognizer.enabled = false
+        self.interactivePopGestureRecognizer?.enabled = false
         self.delegate = self
     }
     
