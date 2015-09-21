@@ -11,7 +11,6 @@
 		9170B0211B75A11B002BE0A7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9170B0201B75A11B002BE0A7 /* Images.xcassets */; };
 		9170B0241B75A11B002BE0A7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9170B0221B75A11B002BE0A7 /* LaunchScreen.xib */; };
 		9170B0301B75A11B002BE0A7 /* ARNZoomImageTransitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170B02F1B75A11B002BE0A7 /* ARNZoomImageTransitionTests.swift */; };
-		9170B03B1B75A731002BE0A7 /* ARNTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170B03A1B75A731002BE0A7 /* ARNTransitionAnimator.swift */; };
 		9170B03D1B75ADA5002BE0A7 /* ARNImageTransitionNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170B03C1B75ADA5002BE0A7 /* ARNImageTransitionNavigationController.swift */; };
 		9170B03F1B75BA13002BE0A7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170B03E1B75BA13002BE0A7 /* DetailViewController.swift */; };
 		9170B0411B75BA57002BE0A7 /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9170B0401B75BA57002BE0A7 /* DetailViewController.storyboard */; };
@@ -26,6 +25,7 @@
 		9170B0551B7613C4002BE0A7 /* ARNModalImageTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170B0541B7613C4002BE0A7 /* ARNModalImageTransitionViewController.swift */; };
 		9170B0571B7613E3002BE0A7 /* ARNImageZoomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170B0561B7613E3002BE0A7 /* ARNImageZoomTransition.swift */; };
 		91F37EB41B7634C700B15EBD /* mos.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 91F37EB31B7634C700B15EBD /* mos.jpg */; };
+		FA85F2D3CB718F8C1E221871 /* Pods_ARNZoomImageTransition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828EA8BF41E56175E7AF806C /* Pods_ARNZoomImageTransition.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4BCC22DC65FFD8CA9A34FE2E /* Pods-ARNZoomImageTransition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARNZoomImageTransition.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARNZoomImageTransition/Pods-ARNZoomImageTransition.release.xcconfig"; sourceTree = "<group>"; };
+		828EA8BF41E56175E7AF806C /* Pods_ARNZoomImageTransition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARNZoomImageTransition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9170B0141B75A11B002BE0A7 /* ARNZoomImageTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARNZoomImageTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9170B0181B75A11B002BE0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9170B0191B75A11B002BE0A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,7 +49,6 @@
 		9170B0291B75A11B002BE0A7 /* ARNZoomImageTransitionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARNZoomImageTransitionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9170B02E1B75A11B002BE0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9170B02F1B75A11B002BE0A7 /* ARNZoomImageTransitionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARNZoomImageTransitionTests.swift; sourceTree = "<group>"; };
-		9170B03A1B75A731002BE0A7 /* ARNTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARNTransitionAnimator.swift; sourceTree = "<group>"; };
 		9170B03C1B75ADA5002BE0A7 /* ARNImageTransitionNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARNImageTransitionNavigationController.swift; sourceTree = "<group>"; };
 		9170B03E1B75BA13002BE0A7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		9170B0401B75BA57002BE0A7 /* DetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 		9170B0541B7613C4002BE0A7 /* ARNModalImageTransitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARNModalImageTransitionViewController.swift; sourceTree = "<group>"; };
 		9170B0561B7613E3002BE0A7 /* ARNImageZoomTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARNImageZoomTransition.swift; sourceTree = "<group>"; };
 		91F37EB31B7634C700B15EBD /* mos.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mos.jpg; sourceTree = "<group>"; };
+		EDCBAD4702454AF6DA7679B7 /* Pods-ARNZoomImageTransition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARNZoomImageTransition.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARNZoomImageTransition/Pods-ARNZoomImageTransition.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA85F2D3CB718F8C1E221871 /* Pods_ARNZoomImageTransition.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,12 +85,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0900F0207664CC0665764D05 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EDCBAD4702454AF6DA7679B7 /* Pods-ARNZoomImageTransition.debug.xcconfig */,
+				4BCC22DC65FFD8CA9A34FE2E /* Pods-ARNZoomImageTransition.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		67FF0E6500640D2EC567B99D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				828EA8BF41E56175E7AF806C /* Pods_ARNZoomImageTransition.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9170B00B1B75A11B002BE0A7 = {
 			isa = PBXGroup;
 			children = (
 				9170B0161B75A11B002BE0A7 /* ARNZoomImageTransition */,
 				9170B02C1B75A11B002BE0A7 /* ARNZoomImageTransitionTests */,
 				9170B0151B75A11B002BE0A7 /* Products */,
+				0900F0207664CC0665764D05 /* Pods */,
+				67FF0E6500640D2EC567B99D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,7 +165,6 @@
 		9170B0391B75A122002BE0A7 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				9170B03A1B75A731002BE0A7 /* ARNTransitionAnimator.swift */,
 				9170B0561B7613E3002BE0A7 /* ARNImageZoomTransition.swift */,
 				9170B0541B7613C4002BE0A7 /* ARNModalImageTransitionViewController.swift */,
 				9170B03C1B75ADA5002BE0A7 /* ARNImageTransitionNavigationController.swift */,
@@ -182,9 +203,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9170B0331B75A11B002BE0A7 /* Build configuration list for PBXNativeTarget "ARNZoomImageTransition" */;
 			buildPhases = (
+				311634A6734EBE93910D636D /* Check Pods Manifest.lock */,
 				9170B0101B75A11B002BE0A7 /* Sources */,
 				9170B0111B75A11B002BE0A7 /* Frameworks */,
 				9170B0121B75A11B002BE0A7 /* Resources */,
+				937B6DC8056C5B4FEB594496 /* Embed Pods Frameworks */,
+				B01D38CC4572CC5B6EF86891 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -277,6 +301,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		311634A6734EBE93910D636D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		937B6DC8056C5B4FEB594496 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARNZoomImageTransition/Pods-ARNZoomImageTransition-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B01D38CC4572CC5B6EF86891 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARNZoomImageTransition/Pods-ARNZoomImageTransition-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9170B0101B75A11B002BE0A7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -291,7 +363,6 @@
 				9170B04F1B75BE6F002BE0A7 /* CollectionCell.swift in Sources */,
 				9170B0571B7613E3002BE0A7 /* ARNImageZoomTransition.swift in Sources */,
 				9170B03D1B75ADA5002BE0A7 /* ARNImageTransitionNavigationController.swift in Sources */,
-				9170B03B1B75A731002BE0A7 /* ARNTransitionAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,7 +434,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -401,7 +472,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -410,6 +481,7 @@
 		};
 		9170B0341B75A11B002BE0A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EDCBAD4702454AF6DA7679B7 /* Pods-ARNZoomImageTransition.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "ARNZoomImageTransition/Supporting Files/Info.plist";
@@ -421,6 +493,7 @@
 		};
 		9170B0351B75A11B002BE0A7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BCC22DC65FFD8CA9A34FE2E /* Pods-ARNZoomImageTransition.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "ARNZoomImageTransition/Supporting Files/Info.plist";

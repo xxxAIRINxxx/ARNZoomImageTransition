@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ARNTransitionAnimator
 
 @objc protocol ARNImageTransitionZoomable {
     
