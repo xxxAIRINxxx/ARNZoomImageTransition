@@ -8,6 +8,9 @@
 
 Custom image zooming animation transition. & interactive transition. written in Swift.
 
+## Demo
+
+[See demo on Appetize.io](https://appetize.io/app/7z0pzg1ntzbyef47e0rjpmck2g?device=iphone5s&scale=75&orientation=portrait&osVersion=9.2)
 
 ## Using Transition Animator
 
