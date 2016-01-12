@@ -21,6 +21,16 @@ class ModalViewController: ARNModalImageTransitionViewController, ARNImageTransi
         print("deinit ModalViewController")
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        print("ModalViewController viewWillAppear")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("ModalViewController viewWillDisappear")
+    }
+    
     // MARK: - ARNImageTransitionZoomable
     
     func createTransitionImageView() -> UIImageView {

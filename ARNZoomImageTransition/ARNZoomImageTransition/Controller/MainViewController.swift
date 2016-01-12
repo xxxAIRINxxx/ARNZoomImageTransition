@@ -33,6 +33,16 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
         self.updateNavigationItem()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        print("MainViewController viewWillAppear")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("MainViewController viewWillDisappear")
+    }
+    
     func updateNavigationItem() {
         if isModeModal {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Modal", style: .Done, target: self, action: "modePush")

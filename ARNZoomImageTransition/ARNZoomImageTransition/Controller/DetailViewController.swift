@@ -16,6 +16,16 @@ class DetailViewController: UIViewController, ARNImageTransitionZoomable {
         print("deinit DetailViewController")
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        print("DetailViewController viewWillAppear")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("DetailViewController viewWillDisappear")
+    }
+    
     // MARK: - ARNImageTransitionZoomable
     
     func createTransitionImageView() -> UIImageView {
