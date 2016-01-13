@@ -1,15 +1,17 @@
 # ARNTransitionAnimator
 
-[![Language: Swift](https://img.shields.io/badge/lang-Swift-yellow.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift 2.1](https://img.shields.io/badge/Swift-2.1-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](https://developer.apple.com/swift/)
+[![Xcode 7.1+](https://img.shields.io/badge/Xcode-7.1+-blue.svg?style=flat)](https://developer.apple.com/swift/)
 
 Custom transition & interactive transition animator for iOS. written in Swift.
 
 
 ## Requirements
 
-* Xcode 7.0
+* Xcode 7.1+
 * iOS 8.0+
-* Swift 2.0
+* Swift 2.1
 
 
 ## Installation
@@ -25,6 +27,16 @@ platform :ios, '8.0'
 use_frameworks!
 
 pod "ARNTransitionAnimator"
+
+```
+
+### Carthage
+
+To integrate ARNTransitionAnimator into your Xcode project using Carthage, specify it in your Cartfile:
+
+```
+
+github "xxxAIRINxxx/ARNTransitionAnimator"
 
 ```
 

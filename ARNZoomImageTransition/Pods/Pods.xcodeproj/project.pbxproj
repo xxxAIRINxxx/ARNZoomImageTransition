@@ -7,93 +7,75 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1CDE68664137B0B8A2CF3201A6749F2D /* ARNTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E35D9DF9CA396902F1240942A15E612 /* ARNTransitionAnimator.swift */; };
-		416FD38422676F7D51FAFD0FDCAB5B56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E81DE2CA312E91CF070C1A0B19B7FE9 /* Foundation.framework */; };
-		74E6D4FE6D2CF9F3FD219A6785A6E678 /* Pods-ARNZoomImageTransition-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A0D57BDFD25F1B4BE3C29CE485855E8 /* Pods-ARNZoomImageTransition-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		993A3C7C8062CB984AC609755BD14ED6 /* ARNTransitionAnimator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E033B7D66D9B5D75C98634FF487ECA11 /* ARNTransitionAnimator-dummy.m */; };
-		D86C0B6EAFFA1B7DA0F3AC5E379B24FF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E81DE2CA312E91CF070C1A0B19B7FE9 /* Foundation.framework */; };
-		E61A7DC6F8320EB0A55E69E9A92A96C1 /* ARNTransitionAnimator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A8056179DF548F2DACC002D4E1B20FFC /* ARNTransitionAnimator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E778D9C4541016DAD09D0AECEBAB8238 /* Pods-ARNZoomImageTransition-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FAA38D70D42FEEE90A474CB44628FA /* Pods-ARNZoomImageTransition-dummy.m */; };
+		3332E6E94AA77848B445BB3217A344FD /* Pods-ARNZoomImageTransition-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 599771A1C2C3CE799B467F50D7CD0393 /* Pods-ARNZoomImageTransition-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3F2A87B04B69371F210BD46DB5E0271C /* ARNTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F591AF65DAE04D128C904D733EF9D9 /* ARNTransitionAnimator.swift */; };
+		5F3335E2BBE0899E7E307973EAFE5176 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		8ADD17817140B9DE25B1D40BB8333D19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		9AE0501A0EE045786A4D92655EF63BC8 /* ARNTransitionAnimator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E621B1E2AC3C8462F5BE5AF63D13A1B3 /* ARNTransitionAnimator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B953510A81918BA172806B1557B4C5A3 /* Pods-ARNZoomImageTransition-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAA189966A3B34A2CFA0972518FD47A /* Pods-ARNZoomImageTransition-dummy.m */; };
+		D7ADD7A0D7A79A99D7C0CF34CEC59D42 /* ARNTransitionAnimator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 64138D3A64A118206490A2ED298259E6 /* ARNTransitionAnimator-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6683E8F6882BC241609774D6C546BB87 /* PBXContainerItemProxy */ = {
+		D5E32FD4C1C9E7718FF462A2E6EE1A77 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = DEF78AD22D2E64B66FA76A45A33321C2;
+			remoteGlobalIDString = 887A1F399C1C0E18F1B9EEA0FD58F115;
 			remoteInfo = ARNTransitionAnimator;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04AF77B98AC0BBC824CC936396CFC567 /* Pods-ARNZoomImageTransition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ARNZoomImageTransition.debug.xcconfig"; sourceTree = "<group>"; };
-		09FAA38D70D42FEEE90A474CB44628FA /* Pods-ARNZoomImageTransition-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ARNZoomImageTransition-dummy.m"; sourceTree = "<group>"; };
-		0F1AD90057B82A91E926698FCE4B1AF8 /* Pods-ARNZoomImageTransition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ARNZoomImageTransition.release.xcconfig"; sourceTree = "<group>"; };
-		10B396EEE7F7602E17DDC8EE9D9E5523 /* ARNTransitionAnimator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ARNTransitionAnimator.modulemap; sourceTree = "<group>"; };
 		121D76C63F75E4C2836227057AA0F466 /* Pods-ARNZoomImageTransition-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ARNZoomImageTransition-frameworks.sh"; sourceTree = "<group>"; };
-		180364F74AC8F94F5318C0CFEA0ABC31 /* Pods_ARNZoomImageTransition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARNZoomImageTransition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		245023A6EDB1CF3D559C29DC9A4D4E57 /* ARNTransitionAnimator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ARNTransitionAnimator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E81DE2CA312E91CF070C1A0B19B7FE9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		13F1F42411E0D62C62EF144AFD1F89C7 /* ARNTransitionAnimator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ARNTransitionAnimator.modulemap; sourceTree = "<group>"; };
+		1CFF961DC4883A332BBEF692F98C7003 /* ARNTransitionAnimator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ARNTransitionAnimator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DBFEAF7FCB6270C340DB3E5FDBC7CD4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31979CB1F0E59C8917BACB1570B3D0EF /* ARNTransitionAnimator.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ARNTransitionAnimator.xcconfig; sourceTree = "<group>"; };
+		3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		4067AF86B0C00B9DAC119525115A7840 /* Pods-ARNZoomImageTransition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ARNZoomImageTransition.release.xcconfig"; sourceTree = "<group>"; };
 		447310CE5EE1E6D1967E4B8D70243842 /* Pods-ARNZoomImageTransition-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ARNZoomImageTransition-acknowledgements.plist"; sourceTree = "<group>"; };
-		5A0D57BDFD25F1B4BE3C29CE485855E8 /* Pods-ARNZoomImageTransition-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ARNZoomImageTransition-umbrella.h"; sourceTree = "<group>"; };
-		7684C9A1C1091A00A7EE42F0B304C9BB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7748D679355756D6AC8EA2F708E81ECD /* ARNTransitionAnimator-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "ARNTransitionAnimator-Private.xcconfig"; sourceTree = "<group>"; };
+		599771A1C2C3CE799B467F50D7CD0393 /* Pods-ARNZoomImageTransition-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ARNZoomImageTransition-umbrella.h"; sourceTree = "<group>"; };
+		64138D3A64A118206490A2ED298259E6 /* ARNTransitionAnimator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ARNTransitionAnimator-dummy.m"; sourceTree = "<group>"; };
+		7DF44B17EC1771658746B254B36850E6 /* Pods-ARNZoomImageTransition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ARNZoomImageTransition.debug.xcconfig"; sourceTree = "<group>"; };
 		80D63A1EE81DE53DCDC87FA7334EEC5A /* Pods-ARNZoomImageTransition.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ARNZoomImageTransition.modulemap"; sourceTree = "<group>"; };
 		855CBDC5D83822C08929126B538D822A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9E35D9DF9CA396902F1240942A15E612 /* ARNTransitionAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ARNTransitionAnimator.swift; path = Source/ARNTransitionAnimator.swift; sourceTree = "<group>"; };
-		A8056179DF548F2DACC002D4E1B20FFC /* ARNTransitionAnimator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ARNTransitionAnimator-umbrella.h"; sourceTree = "<group>"; };
+		89D242A98DCB2FD331F234BBB8F64860 /* Pods_ARNZoomImageTransition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARNZoomImageTransition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7BAA6048F843EF2C23CFA29DCB7A731 /* ARNTransitionAnimator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ARNTransitionAnimator-prefix.pch"; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BFAA189966A3B34A2CFA0972518FD47A /* Pods-ARNZoomImageTransition-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ARNZoomImageTransition-dummy.m"; sourceTree = "<group>"; };
 		D13CAC32BAE61F74B273F05ECE2F4ED6 /* Pods-ARNZoomImageTransition-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ARNZoomImageTransition-acknowledgements.markdown"; sourceTree = "<group>"; };
 		D300978B3A11A40BD6652A5B559C6060 /* Pods-ARNZoomImageTransition-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ARNZoomImageTransition-resources.sh"; sourceTree = "<group>"; };
-		D8F4C4CED0652CF9B81B6F02079D360C /* ARNTransitionAnimator.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ARNTransitionAnimator.xcconfig; sourceTree = "<group>"; };
-		E033B7D66D9B5D75C98634FF487ECA11 /* ARNTransitionAnimator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ARNTransitionAnimator-dummy.m"; sourceTree = "<group>"; };
-		F1D757BC3AA959367BC2E932941B9181 /* ARNTransitionAnimator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ARNTransitionAnimator-prefix.pch"; sourceTree = "<group>"; };
+		E621B1E2AC3C8462F5BE5AF63D13A1B3 /* ARNTransitionAnimator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ARNTransitionAnimator-umbrella.h"; sourceTree = "<group>"; };
+		E7F591AF65DAE04D128C904D733EF9D9 /* ARNTransitionAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ARNTransitionAnimator.swift; path = Source/ARNTransitionAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B58D307175A83111D32E05F7ABA21E75 /* Frameworks */ = {
+		68C683F9AF2184F6FD16EE6C702A1F35 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D86C0B6EAFFA1B7DA0F3AC5E379B24FF /* Foundation.framework in Frameworks */,
+				5F3335E2BBE0899E7E307973EAFE5176 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B9E845AD0AC6BF70951E4DADB019B86D /* Frameworks */ = {
+		A33C1D2BB528983447A2B30DB4E4B34E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				416FD38422676F7D51FAFD0FDCAB5B56 /* Foundation.framework in Frameworks */,
+				8ADD17817140B9DE25B1D40BB8333D19 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3C3C586E3F171276E208B0B7A5D139BA /* ARNTransitionAnimator */ = {
-			isa = PBXGroup;
-			children = (
-				9E35D9DF9CA396902F1240942A15E612 /* ARNTransitionAnimator.swift */,
-				A66A4F7727E2FC06095A1BFE00C65157 /* Support Files */,
-			);
-			path = ARNTransitionAnimator;
-			sourceTree = "<group>";
-		};
 		5333DCC0A051EDDD2F6634B39946F48C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3C3C586E3F171276E208B0B7A5D139BA /* ARNTransitionAnimator */,
+				8F395551205277DBCA4D2AC8749A4AE8 /* ARNTransitionAnimator */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		53F661C0CA7190D2CF05023FB33D61E4 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				2E81DE2CA312E91CF070C1A0B19B7FE9 /* Foundation.framework */,
-			);
-			name = iOS;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -102,7 +84,7 @@
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				5333DCC0A051EDDD2F6634B39946F48C /* Pods */,
-				CCA510CFBEA2D207524CDA0D73C3B561 /* Products */,
+				B1714127BD193CFAC6D084A212047647 /* Products */,
 				8BAF88BABE8FC9BAFBD07E31FC8C59A8 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -115,36 +97,52 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		A66A4F7727E2FC06095A1BFE00C65157 /* Support Files */ = {
+		8F395551205277DBCA4D2AC8749A4AE8 /* ARNTransitionAnimator */ = {
 			isa = PBXGroup;
 			children = (
-				10B396EEE7F7602E17DDC8EE9D9E5523 /* ARNTransitionAnimator.modulemap */,
-				D8F4C4CED0652CF9B81B6F02079D360C /* ARNTransitionAnimator.xcconfig */,
-				7748D679355756D6AC8EA2F708E81ECD /* ARNTransitionAnimator-Private.xcconfig */,
-				E033B7D66D9B5D75C98634FF487ECA11 /* ARNTransitionAnimator-dummy.m */,
-				F1D757BC3AA959367BC2E932941B9181 /* ARNTransitionAnimator-prefix.pch */,
-				A8056179DF548F2DACC002D4E1B20FFC /* ARNTransitionAnimator-umbrella.h */,
-				7684C9A1C1091A00A7EE42F0B304C9BB /* Info.plist */,
+				E7F591AF65DAE04D128C904D733EF9D9 /* ARNTransitionAnimator.swift */,
+				D1D9D3FA6A0F316B91F258C6EBC3B122 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/ARNTransitionAnimator";
+			path = ARNTransitionAnimator;
+			sourceTree = "<group>";
+		};
+		B1714127BD193CFAC6D084A212047647 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1CFF961DC4883A332BBEF692F98C7003 /* ARNTransitionAnimator.framework */,
+				89D242A98DCB2FD331F234BBB8F64860 /* Pods_ARNZoomImageTransition.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				53F661C0CA7190D2CF05023FB33D61E4 /* iOS */,
+				BF6342C8B29F4CEEA088EFF7AB4DE362 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
+		BF6342C8B29F4CEEA088EFF7AB4DE362 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				245023A6EDB1CF3D559C29DC9A4D4E57 /* ARNTransitionAnimator.framework */,
-				180364F74AC8F94F5318C0CFEA0ABC31 /* Pods_ARNZoomImageTransition.framework */,
+				3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */,
 			);
-			name = Products;
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		D1D9D3FA6A0F316B91F258C6EBC3B122 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				13F1F42411E0D62C62EF144AFD1F89C7 /* ARNTransitionAnimator.modulemap */,
+				31979CB1F0E59C8917BACB1570B3D0EF /* ARNTransitionAnimator.xcconfig */,
+				64138D3A64A118206490A2ED298259E6 /* ARNTransitionAnimator-dummy.m */,
+				B7BAA6048F843EF2C23CFA29DCB7A731 /* ARNTransitionAnimator-prefix.pch */,
+				E621B1E2AC3C8462F5BE5AF63D13A1B3 /* ARNTransitionAnimator-umbrella.h */,
+				2DBFEAF7FCB6270C340DB3E5FDBC7CD4 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ARNTransitionAnimator";
 			sourceTree = "<group>";
 		};
 		D627961DD015C6B82DEA867FE26D32D9 /* Pods-ARNZoomImageTransition */ = {
@@ -154,12 +152,12 @@
 				80D63A1EE81DE53DCDC87FA7334EEC5A /* Pods-ARNZoomImageTransition.modulemap */,
 				D13CAC32BAE61F74B273F05ECE2F4ED6 /* Pods-ARNZoomImageTransition-acknowledgements.markdown */,
 				447310CE5EE1E6D1967E4B8D70243842 /* Pods-ARNZoomImageTransition-acknowledgements.plist */,
-				09FAA38D70D42FEEE90A474CB44628FA /* Pods-ARNZoomImageTransition-dummy.m */,
+				BFAA189966A3B34A2CFA0972518FD47A /* Pods-ARNZoomImageTransition-dummy.m */,
 				121D76C63F75E4C2836227057AA0F466 /* Pods-ARNZoomImageTransition-frameworks.sh */,
 				D300978B3A11A40BD6652A5B559C6060 /* Pods-ARNZoomImageTransition-resources.sh */,
-				5A0D57BDFD25F1B4BE3C29CE485855E8 /* Pods-ARNZoomImageTransition-umbrella.h */,
-				04AF77B98AC0BBC824CC936396CFC567 /* Pods-ARNZoomImageTransition.debug.xcconfig */,
-				0F1AD90057B82A91E926698FCE4B1AF8 /* Pods-ARNZoomImageTransition.release.xcconfig */,
+				599771A1C2C3CE799B467F50D7CD0393 /* Pods-ARNZoomImageTransition-umbrella.h */,
+				7DF44B17EC1771658746B254B36850E6 /* Pods-ARNZoomImageTransition.debug.xcconfig */,
+				4067AF86B0C00B9DAC119525115A7840 /* Pods-ARNZoomImageTransition.release.xcconfig */,
 			);
 			name = "Pods-ARNZoomImageTransition";
 			path = "Target Support Files/Pods-ARNZoomImageTransition";
@@ -168,50 +166,32 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		298EDB1D521877CEBEBF6D50BB521DCF /* Headers */ = {
+		F3DBDCCF68B595D0A8657E4A2BFFE262 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74E6D4FE6D2CF9F3FD219A6785A6E678 /* Pods-ARNZoomImageTransition-umbrella.h in Headers */,
+				9AE0501A0EE045786A4D92655EF63BC8 /* ARNTransitionAnimator-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7ABED4FE2FFC132D370FEDDF0D8DD07A /* Headers */ = {
+		FDCF901DACD7B688443086902CA25890 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E61A7DC6F8320EB0A55E69E9A92A96C1 /* ARNTransitionAnimator-umbrella.h in Headers */,
+				3332E6E94AA77848B445BB3217A344FD /* Pods-ARNZoomImageTransition-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		6D627B06119A10332E9F56D2EB62CF0C /* Pods-ARNZoomImageTransition */ = {
+		887A1F399C1C0E18F1B9EEA0FD58F115 /* ARNTransitionAnimator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0C06C4CFAB95BDCE909B0FAB27FC1969 /* Build configuration list for PBXNativeTarget "Pods-ARNZoomImageTransition" */;
+			buildConfigurationList = E62BA98347D3CD8781DC0BDC83800279 /* Build configuration list for PBXNativeTarget "ARNTransitionAnimator" */;
 			buildPhases = (
-				71B9E00231669C8DC34AC014ED675E72 /* Sources */,
-				B9E845AD0AC6BF70951E4DADB019B86D /* Frameworks */,
-				298EDB1D521877CEBEBF6D50BB521DCF /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F050D1227B87BD899DE0EC141AB26642 /* PBXTargetDependency */,
-			);
-			name = "Pods-ARNZoomImageTransition";
-			productName = "Pods-ARNZoomImageTransition";
-			productReference = 180364F74AC8F94F5318C0CFEA0ABC31 /* Pods_ARNZoomImageTransition.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		DEF78AD22D2E64B66FA76A45A33321C2 /* ARNTransitionAnimator */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CC7A3033CD6E9D96D895DB9FAB9A2DC6 /* Build configuration list for PBXNativeTarget "ARNTransitionAnimator" */;
-			buildPhases = (
-				F6ECA26D2F7D827D6604E5E561BACFCC /* Sources */,
-				B58D307175A83111D32E05F7ABA21E75 /* Frameworks */,
-				7ABED4FE2FFC132D370FEDDF0D8DD07A /* Headers */,
+				EDC299ED266202121C487BA4B61E26DE /* Sources */,
+				68C683F9AF2184F6FD16EE6C702A1F35 /* Frameworks */,
+				F3DBDCCF68B595D0A8657E4A2BFFE262 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -219,7 +199,25 @@
 			);
 			name = ARNTransitionAnimator;
 			productName = ARNTransitionAnimator;
-			productReference = 245023A6EDB1CF3D559C29DC9A4D4E57 /* ARNTransitionAnimator.framework */;
+			productReference = 1CFF961DC4883A332BBEF692F98C7003 /* ARNTransitionAnimator.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		892D7B5836A095A9FF81DF2F01792E45 /* Pods-ARNZoomImageTransition */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A36240C9F6A4B28CB0FC40907CCDF866 /* Build configuration list for PBXNativeTarget "Pods-ARNZoomImageTransition" */;
+			buildPhases = (
+				DF28646A24C23E4EDF4215040083543F /* Sources */,
+				A33C1D2BB528983447A2B30DB4E4B34E /* Frameworks */,
+				FDCF901DACD7B688443086902CA25890 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83F4D5C246FD8E845522E5A2998B7815 /* PBXTargetDependency */,
+			);
+			name = "Pods-ARNZoomImageTransition";
+			productName = "Pods-ARNZoomImageTransition";
+			productReference = 89D242A98DCB2FD331F234BBB8F64860 /* Pods_ARNZoomImageTransition.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -239,76 +237,49 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = CCA510CFBEA2D207524CDA0D73C3B561 /* Products */;
+			productRefGroup = B1714127BD193CFAC6D084A212047647 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DEF78AD22D2E64B66FA76A45A33321C2 /* ARNTransitionAnimator */,
-				6D627B06119A10332E9F56D2EB62CF0C /* Pods-ARNZoomImageTransition */,
+				887A1F399C1C0E18F1B9EEA0FD58F115 /* ARNTransitionAnimator */,
+				892D7B5836A095A9FF81DF2F01792E45 /* Pods-ARNZoomImageTransition */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		71B9E00231669C8DC34AC014ED675E72 /* Sources */ = {
+		DF28646A24C23E4EDF4215040083543F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E778D9C4541016DAD09D0AECEBAB8238 /* Pods-ARNZoomImageTransition-dummy.m in Sources */,
+				B953510A81918BA172806B1557B4C5A3 /* Pods-ARNZoomImageTransition-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F6ECA26D2F7D827D6604E5E561BACFCC /* Sources */ = {
+		EDC299ED266202121C487BA4B61E26DE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				993A3C7C8062CB984AC609755BD14ED6 /* ARNTransitionAnimator-dummy.m in Sources */,
-				1CDE68664137B0B8A2CF3201A6749F2D /* ARNTransitionAnimator.swift in Sources */,
+				D7ADD7A0D7A79A99D7C0CF34CEC59D42 /* ARNTransitionAnimator-dummy.m in Sources */,
+				3F2A87B04B69371F210BD46DB5E0271C /* ARNTransitionAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F050D1227B87BD899DE0EC141AB26642 /* PBXTargetDependency */ = {
+		83F4D5C246FD8E845522E5A2998B7815 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ARNTransitionAnimator;
-			target = DEF78AD22D2E64B66FA76A45A33321C2 /* ARNTransitionAnimator */;
-			targetProxy = 6683E8F6882BC241609774D6C546BB87 /* PBXContainerItemProxy */;
+			target = 887A1F399C1C0E18F1B9EEA0FD58F115 /* ARNTransitionAnimator */;
+			targetProxy = D5E32FD4C1C9E7718FF462A2E6EE1A77 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		900248FB3C98D8B128018510B6B28F67 /* Release */ = {
+		28A381B48374CBD07CDA41FDBDEA313E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7748D679355756D6AC8EA2F708E81ECD /* ARNTransitionAnimator-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1.0.0;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/ARNTransitionAnimator/ARNTransitionAnimator-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ARNTransitionAnimator/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ARNTransitionAnimator/ARNTransitionAnimator.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = ARNTransitionAnimator;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		A35D84F14E96A2253877C06852755827 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 04AF77B98AC0BBC824CC936396CFC567 /* Pods-ARNZoomImageTransition.debug.xcconfig */;
+			baseConfigurationReference = 7DF44B17EC1771658746B254B36850E6 /* Pods-ARNZoomImageTransition.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -321,12 +292,41 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-ARNZoomImageTransition/Pods-ARNZoomImageTransition.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = Pods_ARNZoomImageTransition;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		71C06A008C9CAC65FA00355040641E17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31979CB1F0E59C8917BACB1570B3D0EF /* ARNTransitionAnimator.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/ARNTransitionAnimator/ARNTransitionAnimator-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ARNTransitionAnimator/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ARNTransitionAnimator/ARNTransitionAnimator.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = ARNTransitionAnimator;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -375,15 +375,15 @@
 			};
 			name = Debug;
 		};
-		ABDB6C114869FE795EB568D93339A7C5 /* Debug */ = {
+		AE79BF2AD1F3443D5F987D1E19C98281 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7748D679355756D6AC8EA2F708E81ECD /* ARNTransitionAnimator-Private.xcconfig */;
+			baseConfigurationReference = 31979CB1F0E59C8917BACB1570B3D0EF /* ARNTransitionAnimator.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1.0.0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
+				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/ARNTransitionAnimator/ARNTransitionAnimator-prefix.pch";
@@ -392,20 +392,19 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ARNTransitionAnimator/ARNTransitionAnimator.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = ARNTransitionAnimator;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		F198C75E38EF32E04FC6EEDDD8E6DCBB /* Release */ = {
+		E858B66552EBC6B0385F5AF2AA3084DB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F1AD90057B82A91E926698FCE4B1AF8 /* Pods-ARNZoomImageTransition.release.xcconfig */;
+			baseConfigurationReference = 4067AF86B0C00B9DAC119525115A7840 /* Pods-ARNZoomImageTransition.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -418,6 +417,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-ARNZoomImageTransition/Pods-ARNZoomImageTransition.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
@@ -469,15 +469,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0C06C4CFAB95BDCE909B0FAB27FC1969 /* Build configuration list for PBXNativeTarget "Pods-ARNZoomImageTransition" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A35D84F14E96A2253877C06852755827 /* Debug */,
-				F198C75E38EF32E04FC6EEDDD8E6DCBB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -487,11 +478,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CC7A3033CD6E9D96D895DB9FAB9A2DC6 /* Build configuration list for PBXNativeTarget "ARNTransitionAnimator" */ = {
+		A36240C9F6A4B28CB0FC40907CCDF866 /* Build configuration list for PBXNativeTarget "Pods-ARNZoomImageTransition" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ABDB6C114869FE795EB568D93339A7C5 /* Debug */,
-				900248FB3C98D8B128018510B6B28F67 /* Release */,
+				28A381B48374CBD07CDA41FDBDEA313E /* Debug */,
+				E858B66552EBC6B0385F5AF2AA3084DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E62BA98347D3CD8781DC0BDC83800279 /* Build configuration list for PBXNativeTarget "ARNTransitionAnimator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71C06A008C9CAC65FA00355040641E17 /* Debug */,
+				AE79BF2AD1F3443D5F987D1E19C98281 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -25,7 +25,7 @@
 		9170B0551B7613C4002BE0A7 /* ARNModalImageTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170B0541B7613C4002BE0A7 /* ARNModalImageTransitionViewController.swift */; };
 		9170B0571B7613E3002BE0A7 /* ARNImageZoomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170B0561B7613E3002BE0A7 /* ARNImageZoomTransition.swift */; };
 		91F37EB41B7634C700B15EBD /* mos.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 91F37EB31B7634C700B15EBD /* mos.jpg */; };
-		FA85F2D3CB718F8C1E221871 /* Pods_ARNZoomImageTransition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828EA8BF41E56175E7AF806C /* Pods_ARNZoomImageTransition.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		FA85F2D3CB718F8C1E221871 /* Pods_ARNZoomImageTransition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828EA8BF41E56175E7AF806C /* Pods_ARNZoomImageTransition.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
