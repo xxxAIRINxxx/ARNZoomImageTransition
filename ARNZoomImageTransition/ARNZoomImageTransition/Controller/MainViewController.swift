@@ -45,15 +45,15 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
     
     func updateNavigationItem() {
         if isModeModal {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Modal", style: .Done, target: self, action: "modePush")
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Modal", style: .Done, target: self, action: #selector(MainViewController.modePush))
         } else {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Push", style: .Done, target: self, action: "modeModal")
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Push", style: .Done, target: self, action: #selector(MainViewController.modeModal))
         }
         
         if isModeInteractive {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Interactive", style: .Done, target: self, action: "modeNormal")
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Interactive", style: .Done, target: self, action: #selector(MainViewController.modeNormal))
         } else {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Normal", style: .Done, target: self, action: "modeInteractive")
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Normal", style: .Done, target: self, action: #selector(MainViewController.modeInteractive))
         }
     }
     
