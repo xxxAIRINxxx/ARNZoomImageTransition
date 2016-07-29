@@ -45,15 +45,15 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
     
     func updateNavigationItem() {
         if isModeModal {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Modal", style: .Done, target: self, action: #selector(MainViewController.modePush))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Modal", style: .Done, target: self, action: #selector(self.modePush))
         } else {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Push", style: .Done, target: self, action: #selector(MainViewController.modeModal))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Push", style: .Done, target: self, action: #selector(self.modeModal))
         }
         
         if isModeInteractive {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Interactive", style: .Done, target: self, action: #selector(MainViewController.modeNormal))
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Interactive", style: .Done, target: self, action: #selector(self.modeNormal))
         } else {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Normal", style: .Done, target: self, action: #selector(MainViewController.modeInteractive))
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Normal", style: .Done, target: self, action: #selector(self.modeInteractive))
         }
     }
     
@@ -101,54 +101,57 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
         let operationType: ARNTransitionAnimatorOperation = isModeModal ? .Present : .Push
         let animator = ARNTransitionAnimator(operationType: operationType, fromVC: self, toVC: controller)
         
-        animator.presentationBeforeHandler = { [weak self, weak controller] (containerView: UIView, transitionContext: UIViewControllerContextTransitioning) in
-            containerView.addSubview(self!.view)
-            containerView.addSubview(controller!.view)
-            controller!.closeButton.hidden = true
+        animator.presentationBeforeHandler = { [weak self] containerView, transitionContext in
+            containerView.addSubview(controller.view)
+            controller.closeButton.hidden = true
             
-            controller!.view.layoutIfNeeded()
+            controller.view.layoutIfNeeded()
             
             let sourceImageView = self!.createTransitionImageView()
-            let destinationImageView = controller!.createTransitionImageView()
+            let destinationImageView = controller.createTransitionImageView()
             
             containerView.addSubview(sourceImageView)
             
-            controller!.presentationBeforeAction()
+            controller.presentationBeforeAction()
             
-            controller!.view.alpha = 0.0
+            controller.view.alpha = 0.0
             
-            animator.presentationAnimationHandler = { (containerView: UIView, percentComplete: CGFloat) in
+            animator.presentationAnimationHandler = { containerView, percentComplete in
                 sourceImageView.frame = destinationImageView.frame
                 
-                controller!.view.alpha = 1.0
+                controller.view.alpha = 1.0
             }
             
-            animator.presentationCompletionHandler = { (containerView: UIView, completeTransition: Bool) in
+            animator.presentationCompletionHandler = { containerView, completeTransition in
                 sourceImageView.removeFromSuperview()
                 self!.presentationCompletionAction(completeTransition)
-                controller!.presentationCompletionAction(completeTransition)
+                controller.presentationCompletionAction(completeTransition)
             }
         }
         
-        animator.dismissalBeforeHandler = { [weak self, weak controller] (containerView: UIView, transitionContext: UIViewControllerContextTransitioning) in
-            containerView.addSubview(self!.view)
-            containerView.bringSubviewToFront(controller!.view)
+        animator.dismissalBeforeHandler = { [weak self] containerView, transitionContext in
+            if case .Dismiss = self!.animator!.interactiveType {
+                containerView.addSubview(self!.navigationController!.view)
+            } else {
+                containerView.addSubview(self!.view)
+            }
+            containerView.bringSubviewToFront(controller.view)
             
-            let sourceImageView = controller!.createTransitionImageView()
+            let sourceImageView = controller.createTransitionImageView()
             let destinationImageView = self!.createTransitionImageView()
             containerView.addSubview(sourceImageView)
             
             let sourceFrame = sourceImageView.frame;
             let destFrame = destinationImageView.frame;
             
-            controller!.dismissalBeforeAction()
+            controller.dismissalBeforeAction()
             
             animator.dismissalCancelAnimationHandler = { (containerView: UIView) in
                 sourceImageView.frame = sourceFrame
-                controller!.view.alpha = 1.0
+                controller.view.alpha = 1.0
             }
             
-            animator.dismissalAnimationHandler = { (containerView: UIView, percentComplete: CGFloat) in
+            animator.dismissalAnimationHandler = { containerView, percentComplete in
                 if percentComplete < -0.05 { return }
                 let frame = CGRectMake(
                     destFrame.origin.x - (destFrame.origin.x - sourceFrame.origin.x) * (1 - percentComplete),
@@ -157,12 +160,12 @@ class MainViewController: UIViewController, ARNImageTransitionZoomable {
                     destFrame.size.height + (sourceFrame.size.height - destFrame.size.height) * (1 - percentComplete)
                 )
                 sourceImageView.frame = frame
-                controller!.view.alpha = 1.0 - (1.0 * percentComplete)
+                controller.view.alpha = 1.0 - (1.0 * percentComplete)
             }
             
-            animator.dismissalCompletionHandler = { (containerView: UIView, completeTransition: Bool) in
+            animator.dismissalCompletionHandler = { containerView, completeTransition in
                 self!.dismissalCompletionAction(completeTransition)
-                controller!.dismissalCompletionAction(completeTransition)
+                controller.dismissalCompletionAction(completeTransition)
                 sourceImageView.removeFromSuperview()
             }
         }
