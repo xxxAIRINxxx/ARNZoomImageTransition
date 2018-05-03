@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, ARNImageTransitionZoomable {
+class DetailViewController: ImageZoomAnimationVC {
     
     @IBOutlet weak var imageView : UIImageView!
     
@@ -16,42 +16,44 @@ class DetailViewController: UIViewController, ARNImageTransitionZoomable {
         print("deinit DetailViewController")
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("DetailViewController viewWillAppear")
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("DetailViewController viewWillDisappear")
     }
     
-    // MARK: - ARNImageTransitionZoomable
+    // MARK: - ImageTransitionZoomable
     
-    func createTransitionImageView() -> UIImageView {
+    override func createTransitionImageView() -> UIImageView {
         let imageView = UIImageView(image: self.imageView.image)
         imageView.contentMode = self.imageView.contentMode
         imageView.clipsToBounds = true
-        imageView.userInteractionEnabled = false
+        imageView.isUserInteractionEnabled = false
         imageView.frame = self.imageView!.frame
         return imageView
     }
     
-    func presentationBeforeAction() {
-        self.imageView.hidden = true
+    @objc override func presentationBeforeAction() {
+        self.imageView.isHidden = true
     }
     
-    func presentationCompletionAction(completeTransition: Bool) {
-        self.imageView.hidden = false
+    @objc override func presentationCompletionAction(didComplete: Bool) {
+        if didComplete {
+            self.imageView.isHidden = false
+        }
     }
     
-    func dismissalBeforeAction() {
-        self.imageView.hidden = true
+    @objc override func dismissalBeforeAction() {
+        self.imageView.isHidden = true
     }
     
-    func dismissalCompletionAction(completeTransition: Bool) {
-        if !completeTransition {
-            self.imageView.hidden = false
+    @objc override func dismissalCompletionAction(didComplete: Bool) {
+        if !didComplete {
+            self.imageView.isHidden = false
         }
     }
 }

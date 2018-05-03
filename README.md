@@ -1,8 +1,8 @@
 # ARNZoomImageTransition
 
-[![Swift 2.2](https://img.shields.io/badge/Swift-2.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift 4.1](https://img.shields.io/badge/Swift-4.1-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](https://developer.apple.com/swift/)
-[![Xcode 7.3+](https://img.shields.io/badge/Xcode-7.3+-blue.svg?style=flat)](https://developer.apple.com/swift/)
+[![Xcode 9.3+](https://img.shields.io/badge/Xcode-9.3+-blue.svg?style=flat)](https://developer.apple.com/swift/)
 
 ![capture](capture.gif "capture")
 
@@ -21,9 +21,9 @@ This sample have created as a showcase of ARNTransitionAnimator.
 
 ## Requirements
 
-* iOS 8.0+
-* Swift 2.2
-* Xcode 7.3+
+* iOS 9.0+
+* Swift 4.1+
+* Xcode 9.3+
 
 ## License
 
